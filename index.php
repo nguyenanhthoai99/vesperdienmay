@@ -1,11 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Thoại</h1>
-</body>
-</html>
+<?php 
+session_start();
+require_once('config.php');
+require_once(_WEB_PATH_TEMPLATES . '/layouts/header-clients.php');
+?>
+
+<h1>Thoại</h1>
+
+<?php
+//    require_once(_WEB_HOST_TEMPLATES. '/layouts/footer-clients.php');
+   require_once(_WEB_PATH_TEMPLATES . '/layouts/footer-clients.php');
+?>

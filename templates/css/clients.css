@@ -1,0 +1,132 @@
+/* Footer clients */
+
+#footer {
+    background-color: white;
+}
+
+.icon-footer {
+    border: 1px solid #f0f0f0;
+    height: 60px;
+    width: 200px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.diachi {
+    background-color: #343a40;
+    color: white;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.icon-footer-cm {
+    height: 60px;
+    width: 200px;
+}
+
+.display-4 {
+    font-size: 24px;
+}
+
+@media only screen and (max-width: 320px) {
+    .footer {
+        font-size: 10px;
+        text-align: center;
+    }
+    .diachi {
+        font-size: 10px;
+        padding: 0px;
+    }
+    .tieuDeFooter {
+        font-size: 16px;
+        font-weight: bold;
+    }
+    .icon-footer {
+        width: 150px;
+        height: 60px;
+        margin: 0px 0px 10px 30px;
+    }
+}
+
+@media (min-width: 321px) and (max-width: 375px) {
+    .footer {
+        font-size: 10px;
+        text-align: center;
+    }
+    .diachi {
+        font-size: 10px;
+        padding: 0px;
+    }
+    .tieuDeFooter {
+        font-size: 16px;
+        font-weight: bold;
+    }
+    .icon-footer {
+        width: 150px;
+        height: 60px;
+        margin: 0px 0px 10px 55px;
+    }
+}
+
+@media (min-width: 376px) and (max-width: 575.98px) {
+    .footer {
+        font-size: 10px;
+        text-align: center;
+    }
+    .diachi {
+        font-size: 10px;
+        padding: 0px;
+    }
+    .tieuDeFooter {
+        font-size: 20px;
+        font-weight: bold;
+    }
+    .icon-footer {
+        width: 200px;
+        height: 60px;
+        margin: 0px 0px 10px 60px;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 763.98px) {
+    .footer {
+        font-size: 16px;
+        text-align: center;
+    }
+    .diachi {
+        font-size: 10px;
+        padding: 0px;
+    }
+    .tieuDeFooter {
+        font-size: 20px;
+        font-weight: bold;
+    }
+    .icon-footer {
+        width: 150px;
+        height: 60px;
+        margin: 0px 0px 0px 0px;
+    }
+}
+
+@media (min-width: 764px) and (max-width: 1023.98px) {
+    .footer {
+        font-size: 12px;
+        text-align: center;
+    }
+    .diachi {
+        font-size: 10px;
+        padding: 0px;
+    }
+    .tieuDeFooter {
+        font-size: 20px;
+        font-weight: bold;
+    }
+    .icon-footer {
+        width: 150px;
+        height: 60px;
+    }
+    .icon-footer-cm {
+        width: 150px;
+        height: 60px;
+    }
+}
