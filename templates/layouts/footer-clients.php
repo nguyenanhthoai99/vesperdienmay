@@ -1,7 +1,7 @@
 <footer>
  
 <div class="container-fluid mt-3" id="footer">
-        <div class="container">
+        <div class="container ">
             <div class="row footer">
                 <div class="col-md-5 ">
                     <div class="row ml-0">

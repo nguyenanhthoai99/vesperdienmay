@@ -1,3 +1,76 @@
+/* Header clients */
+
+.menu {
+    background-color: #4a90e2
+}
+
+.main-menu li a {
+    color: white;
+    display: inline-block;
+}
+
+.main-menu li a:hover {
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+}
+
+.search {
+    width: 400px;
+}
+
+body {
+    background-color: #f5f5fa;
+}
+
+
+/* Sidebar */
+
+.sidebar {
+    background-color: white;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+
+.sidebar-item a {
+    font-size: 20px;
+    color: black;
+}
+
+.sidebar-main .sidebar-item a:hover {
+    background-color: rgba(78, 70, 70, 0.192);
+    color: black;
+    border-radius: 5px;
+}
+
+.sidebar-img {
+    margin-right: 10px;
+    width: 32px;
+    height: 32px;
+    opacity: 1;
+}
+
+
+/* banner */
+
+.banner {
+    margin-left: 15px;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.icon-banner {
+    font-size: 40px;
+}
+
+
+/* content */
+
+.content {
+    margin-top: 15px;
+}
+
+
 /* Footer clients */
 
 #footer {
@@ -13,8 +86,7 @@
 }
 
 .diachi {
-    background-color: #343a40;
-    color: white;
+    background-color: #4a90e2;
     padding-left: 0px;
     padding-right: 0px;
 }
