@@ -1,18 +1,19 @@
 <?php
 session_start();
 require_once('config.php');
-require_once(_WEB_PATH_TEMPLATES . '/layouts/header-clients.php');
+require_once('./includes/function.php');
+layouts('header-clients');
 ?>
 
 <body>
    <div class="container">
       <div class="row">
          <div class="col-3 sidebar">
-            <?php require_once(_WEB_PATH_TEMPLATES . '/layouts/sidebar-clients.php'); ?>
+            <?php layouts('sidebar-clients'); ?>
          </div>
          <div class="col-9 content">
-            <?php require_once(_WEB_PATH_TEMPLATES . '/layouts/banner-clients.php'); ?>
-            <?php require_once(_WEB_PATH_TEMPLATES . '/layouts/content-clients.php'); ?>
+            <?php layouts('banner-clients'); ?>
+            <?php layouts('content-clients'); ?>
          </div>
       </div>
    </div>
@@ -20,6 +21,5 @@ require_once(_WEB_PATH_TEMPLATES . '/layouts/header-clients.php');
 </body>
 
 <?php
-//    require_once(_WEB_HOST_TEMPLATES. '/layouts/footer-clients.php');
-require_once(_WEB_PATH_TEMPLATES . '/layouts/footer-clients.php');
+layouts('footer-clients');
 ?>

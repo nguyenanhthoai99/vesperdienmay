@@ -7,9 +7,10 @@
     <title>Document</title>
     <link rel="stylesheet" href="<?php echo _WEB_HOST_TEMPLATES; ?>/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo _WEB_HOST_TEMPLATES; ?>/css/clients.css">
+    <link rel="stylesheet" href="http://localhost/vesperdienmay/templates/css/admin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
-<nav class="navbar navbar-expand-lg menu" id ="menu">
+<nav class="navbar navbar-expand-lg menu" id="menu">
     <div class="container" id="main-menu">
         <a class="navbar-brand" href="#"><img src="<?php echo _WEB_HOST_TEMPLATES; ?>/imgages/icon/icon.jpg" width="30" height="30"> Vesper Nguyễn</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -25,7 +26,16 @@
                     <a class="nav-link active" aria-current="page" href="#"><i class="fa-solid fa-house" style="color: #74C0FC;"></i>Trang chủ</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fa-regular fa-user"></i> Đăng nhập</a>
+                    <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <!-- Form đăng nhập -->
+                                <?php require_once(_WEB_PATH_AUTH . '/login.php'); ?>
+                            </div>
+                        </div>
+                                <!-- Form đăng ký -->
+                                <?php require_once(_WEB_PATH_AUTH . '/regester.php'); ?>
+                        <a class="btn" data-bs-target="#exampleModalToggle" data-bs-toggle="modal"><i class="fa-regular fa-user"></i> Đăng nhập</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#"><i class="fa-solid fa-cart-shopping"></i>Giỏ hàng</a>
@@ -34,5 +44,25 @@
         </div>
     </div>
 </nav>
+
+<!-- Modal -->
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 </html>
