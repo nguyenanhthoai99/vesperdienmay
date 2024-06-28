@@ -1,6 +1,6 @@
 <footer>
- 
-<div class="container-fluid mt-3" id="footer">
+
+    <div class="container mt-3" id="footer">
         <div class="container ">
             <div class="row footer">
                 <div class="col-md-5 ">
@@ -44,5 +44,8 @@
 
 </footer>
 
-<script src="<?php echo _WEB_HOST_TEMPLATES;?>/js/bootstrap.bundle.min.js"></script>
-<script src="<?php echo _WEB_HOST_TEMPLATES;?>/js/clients.js"></script>
+<script type="text/javascript" src="<?php echo _WEB_HOST_TEMPLATES; ?>/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="<?php echo _WEB_HOST_TEMPLATES; ?>/js/clients.js"></script>
+<script type="text/javascript" src="<?php echo _WEB_HOST_TEMPLATES; ?>/js/jquery.min.js"></script>
+<script type="text/javascript" src="<?php echo _WEB_HOST_TEMPLATES; ?>/js/slick.min.js"></script>
+

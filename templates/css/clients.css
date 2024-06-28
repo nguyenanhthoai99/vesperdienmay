@@ -29,7 +29,8 @@ body {
 .sidebar {
     background-color: white;
     border-radius: 5px;
-    margin-top: 15px;
+    margin-top: 70px;
+    height: 530px;
 }
 
 .sidebar-item a {
@@ -67,7 +68,46 @@ body {
 /* content */
 
 .content {
-    margin-top: 15px;
+    margin-top: 70px;
+}
+
+
+/* Sản phẩm */
+
+.main-sp {
+    position: relative;
+}
+
+.main-sp .priv_arrow {
+    position: absolute;
+    bottom: 100px;
+    left: -15px;
+    height: 70px;
+    width: 45px;
+    font-size: x-large;
+    z-index: 1;
+}
+
+.main-sp .next_arrow {
+    position: absolute;
+    font-size: x-large;
+    bottom: 100px;
+    right: -15px;
+    height: 70px;
+    width: 45px;
+    z-index: 1;
+    display: inline-block;
+}
+
+
+/* sản phẩm khuyến mãi */
+
+.main-km {
+    border: 2px solid #4a90e2;
+}
+
+.sp-km {
+    margin: 5px;
 }
 
 

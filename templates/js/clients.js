@@ -16,7 +16,7 @@ $(function() {
     if (window.screen.width > 767 && window.screen.width < 1024) {
         showNumber = 2;
     }
-    $('.sanpham-hot').slick({
+    $('.main-sp').slick({
         infinite: true,
         slidesToShow: showNumber,
         slidesToScroll: 1,

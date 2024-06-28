@@ -4,15 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Siêu thị điện máy giá rẻ nhất - Điện máy Vesper Nguyễn </title>
+    <meta name="keywords " content="Vesper Nguyễn, vespernguyen, vesper nguyễn, Điện Thoại Giá Rẻ, dienthoaigiare, điện thoại giá rẻ, dtdd, smartphone,laptop,tablet">
+    <link rel="icon" href="<?php echo _WEB_HOST_TEMPLATES; ?>/imgages/icon/icon.jpg" type="image/jpg" sizes="16x16">
+    <link rel="icon" href="<?php echo _WEB_HOST_TEMPLATES; ?>/imgages/icon/icon.jpg" type="image/jpg" sizes="32x32">
     <link rel="stylesheet" href="<?php echo _WEB_HOST_TEMPLATES; ?>/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo _WEB_HOST_TEMPLATES; ?>/css/clients.css">
     <link rel="stylesheet" href="http://localhost/vesperdienmay/templates/css/admin.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="<?php echo _WEB_HOST_TEMPLATES; ?>/css/font-awesome.css">
+    <link rel="stylesheet" href="<?php echo _WEB_HOST_TEMPLATES; ?>/css/slick.css">
 </head>
-<nav class="navbar navbar-expand-lg menu" id="menu">
+<nav class="navbar navbar-expand-lg menu fixed-top" id="menu">
     <div class="container" id="main-menu">
-        <a class="navbar-brand" href="#"><img src="<?php echo _WEB_HOST_TEMPLATES; ?>/imgages/icon/icon.jpg" width="30" height="30"> Vesper Nguyễn</a>
+        <a class="navbar-brand" href="<?php echo _WEB_HOST_CLIENTS; ?>"><img src="<?php echo _WEB_HOST_TEMPLATES; ?>/imgages/icon/icon.jpg" width="30" height="30"> Vesper Nguyễn</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -33,8 +37,8 @@
                                 <?php require_once(_WEB_PATH_AUTH . '/login.php'); ?>
                             </div>
                         </div>
-                                <!-- Form đăng ký -->
-                                <?php require_once(_WEB_PATH_AUTH . '/regester.php'); ?>
+                        <!-- Form đăng ký -->
+                        <?php require_once(_WEB_PATH_AUTH . '/regester.php'); ?>
                         <a class="btn" data-bs-target="#exampleModalToggle" data-bs-toggle="modal"><i class="fa-regular fa-user"></i> Đăng nhập</a>
                 </li>
                 <li class="nav-item">

@@ -8,8 +8,10 @@ layouts('header-clients');
 <body>
    <div class="container">
       <div class="row">
-         <div class="col-3 sidebar">
+         <div class="col-3 sidebar fixed-top overflow-scroll">
             <?php layouts('sidebar-clients'); ?>
+         </div>
+         <div class="col-3">
          </div>
          <div class="col-9 content">
             <?php layouts('banner-clients'); ?>
@@ -17,9 +19,12 @@ layouts('header-clients');
          </div>
       </div>
    </div>
-
 </body>
 
-<?php
-layouts('footer-clients');
-?>
+<div class="row container-fluid">
+   <div class="col-3">
+   </div>
+   <div class="col-9">
+      <?php layouts('footer-clients');   ?>
+   </div>
+</div>
