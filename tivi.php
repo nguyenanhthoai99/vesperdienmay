@@ -8,8 +8,11 @@ layouts('header-clients');
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-3 sidebar">
+            <div class="col-3 sidebar fixed-top">
                 <?php layouts('sidebar-clients'); ?>
+            </div>
+            <div class="col-3">
+
             </div>
             <div class="col-9 content">
                 <!-- Trang lọc sản phẩm -->
@@ -49,12 +52,22 @@ layouts('header-clients');
                         </li>
                     </ul>
                 </div>
-                <?php layouts('content-clients'); ?>
+                <div class="row">
+                    <div class="col-3">TIVI</div>
+                    <div class="col-3">TIVI</div>
+                    <div class="col-3">TIVI</div>
+                    <div class="col-3">TIVI</div>
+                </div>
             </div>
         </div>
     </div>
 </body>
 
-<?php
-layouts('footer-clients');
-?>
+
+<div class="row container-fluid">
+    <div class="col-3">
+    </div>
+    <div class="col-9">
+        <?php layouts('footer-clients');   ?>
+    </div>
+</div>
