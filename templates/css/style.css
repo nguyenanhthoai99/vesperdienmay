@@ -1,6 +1,9 @@
-html{
+html {
     background-color: #e9edf0a9;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
 }
+
 /* header */
 #header {
     background-color: #2a83e9;
@@ -26,7 +29,7 @@ html{
     border-radius: 5px;
 }
 
-.btn-search{
+.btn-search {
     border: 1px solid white;
 }
 
@@ -36,35 +39,35 @@ html{
 }
 
 
-/* column */
+/* menu column */
 .menu-column {
     margin-top: 100px;
     font-size: large;
     width: 320px;
     height: 600px;
-    overflow: auto; 
+    overflow: auto;
 }
 
 .menu-column ul {
     border: 1px solid #ccc;
     margin-left: 15px;
     border-radius: 5px;
-    
+
 }
 
-.menu-column ul li a{
+.menu-column ul li a {
     color: black;
     border: 1px solid white;
     margin: 5px;
     border-radius: 5px;
 }
 
-.menu-column ul li a:hover{
+.menu-column ul li a:hover {
     color: black;
     border-radius: 5px;
     background-color: #e9edf08c;
     border: 1px solid #aab3bbb4;
-  
+
 }
 
 .icon-column {
@@ -73,157 +76,229 @@ html{
 }
 
 /* content */
-.main-content{
+.content {
     margin-top: 70px;
 }
 
+.main-content {
+    width: 850px;
+    text-align: center;
+}
+
+.main-content a {
+    text-decoration: none;
+}
+
+.tilte-content {
+    border: 1px solid white;
+    background-color: #1075e9;
+    border-radius: 50%;
+    text-align: center;
+    width: 200px;
+    color: white;
+    position: relative;
+    top: 0px;
+    left: 300px;
+    margin: 15px 0px;
+}
+
+.img-item {
+    padding-top: 15px;
+    width: 200px;
+    height: 200px;
+    padding-right: 5px;
+    transition: 0.5s ease-in;
+}
+
+.main-item {
+    margin-right: 5px;
+    margin-bottom: 5px;
+    width: 212px;
+}
+
+.main-item p {
+    margin: 0px;
+}
+
+.ten-item {
+    font-size: 20px;
+}
+
+.gia-item {
+    font-size: 22px;
+    font-weight: bold;
+    color: red;
+}
+
+.giacu-item {
+    font-size: 14px;
+    text-decoration: line-through;
+}
+
+.qua-item {
+    font-size: 14px;
+}
+
+.dong-item {
+    font-size: 14px;
+    position: relative;
+    top: -3px;
+}
+
+/* sidebar */
+.img-sidebar {
+    height: auto;
+    width: 850px;
+}
+
+
 
 /* footer */
-       #footer {
-            background-color: white;
-        }
+#footer {
+    background-color: white;
+}
 
-        .icon-footer {
-            border: 1px solid #f0f0f0;
-            height: 60px;
-            width: 200px;
-            padding-left: 0px;
-            padding-right: 0px;
-        }
+.icon-footer {
+    border: 1px solid #f0f0f0;
+    height: 60px;
+    width: 200px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
 
-        .diachi {
-            background-color:#2a83e9;
-            color: white;
-            padding-left: 0px;
-            padding-right: 0px;
-        }
+.diachi {
+    background-color: #2a83e9;
+    color: white;
+    padding-left: 0px;
+    padding-right: 0px;
+}
 
-        .icon-footer-cm {
-            height: 60px;
-            width: 200px;
-        }
+.icon-footer-cm {
+    height: 60px;
+    width: 200px;
+}
 
-        .display-4 {
-            font-size: 24px;
-        }
+.display-4 {
+    font-size: 24px;
+}
 
-        @media only screen and (max-width: 320px) {
-            .footer {
-                font-size: 10px;
-                text-align: center;
-            }
+@media only screen and (max-width: 320px) {
+    .footer {
+        font-size: 10px;
+        text-align: center;
+    }
 
-            .diachi {
-                font-size: 10px;
-                padding: 0px;
-            }
+    .diachi {
+        font-size: 10px;
+        padding: 0px;
+    }
 
-            .tieuDeFooter {
-                font-size: 16px;
-                font-weight: bold;
-            }
+    .tieuDeFooter {
+        font-size: 16px;
+        font-weight: bold;
+    }
 
-            .icon-footer {
-                width: 150px;
-                height: 60px;
-                margin: 0px 0px 10px 30px;
-            }
+    .icon-footer {
+        width: 150px;
+        height: 60px;
+        margin: 0px 0px 10px 30px;
+    }
 
-        }
+}
 
-        @media (min-width: 321px) and (max-width: 375px) {
-            .footer {
-                font-size: 10px;
-                text-align: center;
-            }
+@media (min-width: 321px) and (max-width: 375px) {
+    .footer {
+        font-size: 10px;
+        text-align: center;
+    }
 
-            .diachi {
-                font-size: 10px;
-                padding: 0px;
-            }
+    .diachi {
+        font-size: 10px;
+        padding: 0px;
+    }
 
-            .tieuDeFooter {
-                font-size: 16px;
-                font-weight: bold;
-            }
+    .tieuDeFooter {
+        font-size: 16px;
+        font-weight: bold;
+    }
 
-            .icon-footer {
-                width: 150px;
-                height: 60px;
-                margin: 0px 0px 10px 55px;
-            }
+    .icon-footer {
+        width: 150px;
+        height: 60px;
+        margin: 0px 0px 10px 55px;
+    }
 
-        }
+}
 
-        @media (min-width: 376px) and (max-width: 575.98px) {
-            .footer {
-                font-size: 10px;
-                text-align: center;
-            }
+@media (min-width: 376px) and (max-width: 575.98px) {
+    .footer {
+        font-size: 10px;
+        text-align: center;
+    }
 
-            .diachi {
-                font-size: 10px;
-                padding: 0px;
-            }
+    .diachi {
+        font-size: 10px;
+        padding: 0px;
+    }
 
-            .tieuDeFooter {
-                font-size: 20px;
-                font-weight: bold;
-            }
+    .tieuDeFooter {
+        font-size: 20px;
+        font-weight: bold;
+    }
 
-            .icon-footer {
-                width: 200px;
-                height: 60px;
-                margin: 0px 0px 10px 60px;
-            }
-        }
+    .icon-footer {
+        width: 200px;
+        height: 60px;
+        margin: 0px 0px 10px 60px;
+    }
+}
 
-        @media (min-width: 576px) and (max-width: 763.98px) {
-            .footer {
-                font-size: 16px;
-                text-align: center;
-            }
+@media (min-width: 576px) and (max-width: 763.98px) {
+    .footer {
+        font-size: 16px;
+        text-align: center;
+    }
 
-            .diachi {
-                font-size: 10px;
-                padding: 0px;
-            }
+    .diachi {
+        font-size: 10px;
+        padding: 0px;
+    }
 
-            .tieuDeFooter {
-                font-size: 20px;
-                font-weight: bold;
-            }
+    .tieuDeFooter {
+        font-size: 20px;
+        font-weight: bold;
+    }
 
-            .icon-footer {
-                width: 150px;
-                height: 60px;
-                margin: 0px 0px 0px 0px;
-            }
-        }
+    .icon-footer {
+        width: 150px;
+        height: 60px;
+        margin: 0px 0px 0px 0px;
+    }
+}
 
-        @media (min-width: 764px) and (max-width: 1023.98px) {
-            .footer {
-                font-size: 12px;
-                text-align: center;
-            }
+@media (min-width: 764px) and (max-width: 1023.98px) {
+    .footer {
+        font-size: 12px;
+        text-align: center;
+    }
 
-            .diachi {
-                font-size: 10px;
-                padding: 0px;
-            }
+    .diachi {
+        font-size: 10px;
+        padding: 0px;
+    }
 
-            .tieuDeFooter {
-                font-size: 20px;
-                font-weight: bold;
-            }
+    .tieuDeFooter {
+        font-size: 20px;
+        font-weight: bold;
+    }
 
-            .icon-footer {
-                width: 150px;
-                height: 60px;
-            }
+    .icon-footer {
+        width: 150px;
+        height: 60px;
+    }
 
-            .icon-footer-cm {
-                width: 150px;
-                height: 60px;
-            }
-        }
+    .icon-footer-cm {
+        width: 150px;
+        height: 60px;
+    }
+}
