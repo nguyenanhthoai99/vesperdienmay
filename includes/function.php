@@ -197,3 +197,27 @@ function isLogin()
     }
     return $checkLogin;
 }
+
+// Hàm hiện thị tiền tệ
+function showCurrency($currency)
+{
+    return number_format($currency, 0, ',', '.') . '<span class="dong-item">&#8363</span></p>';
+}
+
+// hàm tính phan trăm
+function percentage($giagoc, $giahientai)
+{
+    if ($giagoc == 0) {
+        return 0; // Tránh chia cho 0
+    }
+    $giahientai = $giagoc - $giahientai;
+    $kq = ($giahientai / $giagoc) * 100;
+    return number_format($kq) . "%";
+}
+
+function limitString($string, $limit = 30) {
+    if (mb_strlen($string) > $limit) {
+        return mb_substr($string, 0, $limit) . '...';
+    }
+    return $string;
+}
