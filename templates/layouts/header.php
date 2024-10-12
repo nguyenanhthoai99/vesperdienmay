@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Điện máy giá rẻ nhất - Siêu thị điện máy Vesper Nguyễn</title>
     <meta name="keywords " content="Vesper Nguyễn, vesperdienmay, vesper nguyễn, Điện máy Giá Rẻ, dienmaygiare, điện máy giá rẻ, md, tivi,tủ lạnh,máy giặt">
     <link rel="icon" href="<?php echo _WEB_HOST_TEMPLATES ?>/images/icon/icon.jpg?ver=" type="image/jpg" sizes="16x16">
     <link rel="icon" href="<?php echo _WEB_HOST_TEMPLATES ?>/images/icon/icon.jpg?ver=" type="image/jpg" sizes="32x32">
@@ -17,7 +17,7 @@
 <div class="container">
     <nav id="header" class="navbar navbar-expand-lg fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand ms-5" href=""><img src="<?php echo _WEB_HOST_TEMPLATES ?>/images/icon/icon.jpg" class="hinh-icon" />Vesper Nguyễn</a>
+            <a class="navbar-brand ms-5" href="<?php echo _WEB_HOST;?>/index.php"><img src="<?php echo _WEB_HOST_TEMPLATES ?>/images/icon/icon.jpg" class="hinh-icon" />Vesper Nguyễn</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
