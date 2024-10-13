@@ -1,12 +1,15 @@
 html {
-    background-color: #e9edf0a9;
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
 }
 
+body {
+    background: #e9edf0a9;
+}
+
 /* header */
 #header {
-    background-color: #2a83e9;
+    background: #2a83e9;
 }
 
 .hinh-icon {
@@ -38,6 +41,22 @@ html {
     color: white;
 }
 
+/* giới thiệu */
+.main-gthieu {
+    background-color: white;
+}
+
+.main-gthieu h1 {
+    font-size: 20px;
+}
+
+.main-gthieu hr {
+    margin: 5px 0px;
+}
+
+.map {
+    text-align: center;
+}
 
 /* menu column */
 .menu-column {
@@ -46,6 +65,7 @@ html {
     width: 320px;
     height: 600px;
     overflow: auto;
+
 }
 
 .menu-column ul {
@@ -60,6 +80,7 @@ html {
     border: 1px solid white;
     margin: 5px;
     border-radius: 5px;
+    background: white;
 }
 
 .menu-column ul li a:hover {
@@ -85,6 +106,10 @@ html {
     text-align: center;
 }
 
+#main-maylanh {
+    height: 260px;
+}
+
 .main-content a {
     text-decoration: none;
 }
@@ -108,6 +133,10 @@ html {
     height: 200px;
     padding-right: 5px;
     transition: 0.5s ease-in;
+}
+
+.img-maylanh {
+    height: 90px;
 }
 
 .main-item {
