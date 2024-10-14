@@ -1,9 +1,5 @@
 <!-- Những hàm lên quan đến hàm session và cookie    -->
 <?php
-// Kiểm tra quyền truy cập
-if (!defined('_CODE')) {
-    die('<h1>Trang không tồi tại hoặc bạn không có quyền truy cập trang này</h1>');
-}
 
 //Hàm gán Session
 function setSession($key, $value)

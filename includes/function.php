@@ -1,9 +1,6 @@
 <!-- Các hàm trong của project -->
 <?php
-// Kiểm tra quyền truy cập
-if (!defined('_CODE')) {
-    die('<h1>Trang không tồi tại hoặc bạn không có quyền truy cập trang này</h1>');
-}
+
 // hàm kiểm tra đường dẫn path (layout) có tồn tại không , tiêu đề của từng trang
 function layouts($layoutName = 'header', $data = [])
 {
@@ -11,6 +8,10 @@ function layouts($layoutName = 'header', $data = [])
         require_once(_WEB_PATH_TEMPLATES . '/layouts/' . $layoutName . '.php');
     }
 }
+
+require_once 'phpmailer/Exception.php';
+require_once 'phpmailer/PHPMailer.php';
+require_once 'phpmailer/SMTP.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
@@ -20,7 +21,6 @@ use PHPMailer\PHPMailer\Exception;
 function sendMail($to, $subject, $content)
 {
     $mail = new PHPMailer(true);
-
     try {
         //Server settings
         $mail->SMTPDebug = SMTP::DEBUG_OFF;                      //Enable verbose debug output

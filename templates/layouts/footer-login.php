@@ -1,6 +1,6 @@
 <footer>
     <div class="row" style="margin:0px">
-        <div class="col">
+        <div class="col" style="padding:0px">
             <div class="container-fluid mt-3" id="footer">
                 <div class="container">
                     <div class="row footer">

@@ -20,9 +20,9 @@ try {
         ];
         $conn = new PDO($dsn, _USER, _PASSWORD, $options);
         // kiểm tra kết nối
-        if($conn){
-            echo 'Kết nối thành công';
-        }
+        // if($conn){
+        //     echo 'Kết nối thành công';
+        // }
     }
 } catch (exception $e) {
     echo $e->getMessage();

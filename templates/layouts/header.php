@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Điện máy giá rẻ nhất - Siêu thị điện máy Vesper Nguyễn</title>
+    <title><?php echo !empty($data['pageTitle']) ?  $data['pageTitle'] :'Điện máy giá rẻ nhất - Siêu thị điện máy Vesper Nguyễn' ?></title>
     <meta name="keywords " content="Vesper Nguyễn, vesperdienmay, vesper nguyễn, Điện máy Giá Rẻ, dienmaygiare, điện máy giá rẻ, md, tivi,tủ lạnh,máy giặt">
     <link rel="icon" href="<?php echo _WEB_HOST_TEMPLATES ?>/images/icon/icon.jpg?ver=" type="image/jpg" sizes="16x16">
     <link rel="icon" href="<?php echo _WEB_HOST_TEMPLATES ?>/images/icon/icon.jpg?ver=" type="image/jpg" sizes="32x32">

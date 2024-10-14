@@ -58,6 +58,23 @@ body {
     text-align: center;
 }
 
+.main-dangky {
+    margin: 0px;
+    background: white;
+}
+
+.form-group {
+    margin-bottom: 5px;
+}
+
+.btn-login {
+    width: 100%;
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+}
 /* menu column */
 .menu-column {
     margin-top: 100px;
