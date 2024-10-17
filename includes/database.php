@@ -1,9 +1,5 @@
 <!-- các hàm xử lý liên quan đến cơ sở dữ liệu -->
 <?php
-// Kiểm tra quyền truy cập
-if (!defined('_CODE')) {
-    die('<h1>Trang không tồi tại hoặc bạn không có quyền truy cập trang này</h1>');
-}
 
 // Hàm dùng chung có các thao tác (thêm, sửa, xóa)
 function query($sql, $data = [], $check = false)
@@ -43,7 +39,6 @@ function insert($table, $data)
     $valuetb = ' :' . implode(', :', $key);
     $sql = 'INSERT INTO ' . $table . ' (' . $truong . ')' . ' VALUES ' . '(' . $valuetb . ')';
     $result = query($sql, $data);
-
     return $result;
 }
 

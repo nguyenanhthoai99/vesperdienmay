@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once('../config.php');
 require_once(_WEB_PATH . '/includes/function.php');
 $data = ['pageTitle' => 'Đăng ký tài khoản'];
@@ -6,6 +7,8 @@ layouts('header', $data);
 require_once(_WEB_PATH . '/includes/connect.php');
 require_once(_WEB_PATH . '/includes/database.php');
 require_once(_WEB_PATH . '/includes/session.php');
+
+
 
 if (isPost()) {
     $filterAll = filter();
@@ -43,7 +46,7 @@ if (isPost()) {
     // Kiểm tra địa chỉ
     if (empty($filterAll['address'])) {
         $errors['address']['required'] = 'Địa chỉ bắt buộc phải nhập';
-    } 
+    }
 
     // kiểm tra password
     if (empty($filterAll['password'])) {
@@ -63,52 +66,33 @@ if (isPost()) {
         }
     }
 
-// echo '<pre>'; print_r($errors); echo '</pre>';
+    // echo '<pre>'; print_r($errors); echo '</pre>';
     if (empty($errors)) {
-        
+
         $activeToken = sha1(uniqid() . time());
         $dataInsert = [
             'hoten_user' => $filterAll['fullname'],
             'email' => $filterAll['email'],
             'sdt' => $filterAll['phone'],
             'dia_chi' => $filterAll['address'],
-            'phan_quyen' => 0,
+            'phan_quyen' => 2,
             'mat_khau' => password_hash($filterAll['password'], PASSWORD_DEFAULT),
-            'activeToken' => $activeToken,
             'create_at' => date('Y-m-d H:i:s')
         ];
         $inserStatus = insert('users', $dataInsert);
         if ($inserStatus) {
-            // Tạo link kích hoạt
-            $linkActive = _WEB_HOST . '/auth/active.php?token=' . $activeToken;
-
-            // thiết mail kích hoạt
-            $subject = $filterAll['fullname'] . 'Vui lòng kích hoạt tài khoản!';
-            $content = 'Chào' . $filterAll['fullname'] . '<br/>';
-            $content .= 'Vui lòng bấm vào đường link dưới đây để kích hoạt: <br/>';
-            $content .= $linkActive . '<br/>';
-            $content .= 'Trân trọng cảm ơn!';
-
-            // Gửi email
-            $sendEmail =  sendMail($filterAll['email'], $subject, $content);
-            if ($sendEmail) {
-                setFlashData('msg', 'Đăng ký thành công! Vui lòng kiểm tra email để kích hoạt tài khoản!!');
-                setFlashData('msgType', 'success');
-            } else {
-                setFlashData('msg', 'Lỗi hệ thống vui lòng thử lại sau!');
-                setFlashData('msgType', 'danger');
-            }
+            setFlashData('msg', 'Đăng ký thành công. Bạn có thể đăng nhập ngay!');
+            setFlashData('msgType', 'success');
+            redirect(_WEB_HOST . '/auth/login.php');
         } else {
             setFlashData('msg', 'Đăng ký không thành công!');
             setFlashData('msgType', 'danger');
         }
-        // redirect(_WEB_HOST . '/auth/login.php');
     } else {
         setFlashData('msg', 'Vui lòng kiểm tra lại dữ liệu!');
         setFlashData('msgType', 'danger');
         setFlashData('errors', $errors);
         setFlashData('old', $filterAll);
-        // redirect(_WEB_HOST . '/auth/register.php');
     }
 }
 
@@ -157,7 +141,7 @@ $old = getFlashData('old');
                 <label for="">Mật Khẩu<mn style="color:red">*</mn></label>
                 <input type="password" class="mg-form form-control" name="password" placeholder="Mật khẩu"> <?php echo formError('password', ' <span class="error">', '</span>', $errors) ?>
             </div>
-            
+
             <div class="form-group">
                 <label for="">Mật Khẩu<mn style="color:red">*</mn></label>
                 <input type="password" class="mg-form form-control" name="password_confirm" placeholder="Nhập lại mật khẩu"> <?php echo formError('password_confirm', ' <span class="error">', '</span>', $errors) ?>

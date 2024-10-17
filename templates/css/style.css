@@ -19,7 +19,7 @@ body {
 }
 
 .menu-header ul li {
-    margin: 0 5px;
+    margin: 4px 5px 0px 5px;
 }
 
 .menu-header ul li a {
@@ -32,13 +32,29 @@ body {
     border-radius: 5px;
 }
 
+
+
+.input-timkiem {
+    width: 450px;
+    margin-top: 5px;
+    height: 40px;
+}
+
 .btn-search {
     border: 1px solid white;
+    height: 40px;
+    margin-top: 5px;
 }
 
 .btn-search:hover {
     background-color: #1075e9;
     color: white;
+}
+
+.img-user {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
 }
 
 /* giới thiệu */
@@ -64,7 +80,7 @@ body {
 }
 
 .form-group {
-    margin-bottom: 5px;
+    margin-bottom: 15px;
 }
 
 .btn-login {
@@ -75,6 +91,7 @@ body {
     color: red;
     font-size: 12px;
 }
+
 /* menu column */
 .menu-column {
     margin-top: 100px;
