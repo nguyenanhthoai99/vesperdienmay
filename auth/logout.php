@@ -10,5 +10,6 @@ if (isLogin()) {
     $token = getSession('tokenLogin');
     delete('tokenlogin', "token = '$token'");
     removeSession('tokenLogin');
+    removeSession('id_dangnhap');
     redirect(_WEB_HOST . '/auth/login.php');
 }
