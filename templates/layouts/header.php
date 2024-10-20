@@ -48,7 +48,7 @@ require_once(_WEB_PATH . '/includes/session.php');
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <img src="<?php echo _WEB_HOST_TEMPLATES; ?>/images/users/<?php echo $queryUser['hinhanh_user'] ?>" class="img-user">
                             </a>
-                            <?php if ($queryUser['id_user'] == 1 && $queryUser['email'] == 'admin') : ?>
+                            <?php if ($queryUser['id_user'] == 1 && $queryUser['email'] == 'admin' && $queryUser['phan_quyen'] == 1) : ?>
                                 <ul class="dropdown-menu" style="background:black;">
                                     <li><a class="dropdown-item" href="#">Thông tin tài khoản</a></li>
                                     <li><a class="dropdown-item" href="#">Quản lý</a></li>
