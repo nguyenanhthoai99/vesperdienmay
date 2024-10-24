@@ -221,6 +221,17 @@ body {
     right: -60px
 }
 
+/* loại sản phẩm */
+
+.main-lsp a {
+    text-decoration: none;
+}
+
+/* sản phẩm chi tiết */
+
+.img-sanphamchitiet {
+    height: 700px;
+}
 
 /* sidebar */
 .img-sidebar {

@@ -3,7 +3,7 @@ session_start();
 require_once('../config.php');
 require_once('../includes/connect.php');
 require_once('../includes/function.php');
-$data = ['pageTitle' => 'Máy giặt'];
+$data = ['pageTitle' => 'Tủ lạnh'];
 layouts('header', $data);
 require_once('../includes/database.php');
 require_once('../includes/session.php');
@@ -11,12 +11,12 @@ require_once('../includes/session.php');
 <div class="container" style="margin-top: 100px">
     <div class="row main-lsp" style="margin:0px">
         <?php
-        $queryMaygiat = getRaw("SELECT * FROM sanpham WHERE id_lsp = 1 ORDER BY update_at DESC, create_at DESC");
-        if (!empty($queryMaygiat)) :
-            foreach ($queryMaygiat as $item):
+        $queryTuLanh = getRaw("SELECT * FROM sanpham WHERE id_lsp = 6 ORDER BY update_at DESC, create_at DESC");
+        if (!empty($queryTuLanh)) :
+            foreach ($queryTuLanh as $item):
         ?>
                 <a href="view.php?sp=<?php echo $item['ten_sp'] ?>" class="col-3 main-item card" title="<?php echo $item['ten_sp']; ?>" style = "margin-right: 10px">
-                    <img src="<?php echo _WEB_HOST_TEMPLATES; ?>/images/maygiat/<?php echo $item['hinhanh']; ?>" class="card-img-top img-item" onmouseenter="increaseSize(this)" onmouseout="decreaseSize(this)">
+                    <img src="<?php echo _WEB_HOST_TEMPLATES; ?>/images/tulanh/<?php echo $item['hinhanh']; ?>" class="card-img-top img-item" onmouseenter="increaseSize(this)" onmouseout="decreaseSize(this)">
                     <div class="card-body">
                         <p class="card-title ten-item"><?php echo limitString($item['ten_sp']); ?></p>
                         <p class="card-text gia-item"><?php echo showCurrency($item['giahientai_sp']); ?></p>
@@ -33,5 +33,5 @@ require_once('../includes/session.php');
 </div>
 
 <?php
-layouts('footer-login');
+require_once('../templates/layouts/footer-login.php');
 ?>

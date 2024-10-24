@@ -5,28 +5,28 @@
             <h2 class="text-center text-upcase">Danh mục</h2>
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><img src="<?php echo _WEB_HOST_TEMPLATES; ?>/images/icon/maygiat.jpg" class="icon-column"> Máy giặt</a>
+                    <a class="nav-link" href="<?php _WEB_HOST; ?>/vesperdienmay/maygiat"><img src="<?php echo _WEB_HOST_TEMPLATES; ?>/images/icon/maygiat.jpg" class="icon-column"> Máy giặt</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><img src="<?php echo _WEB_HOST_TEMPLATES; ?>/images/icon/maylocnuoc.jpg" class="icon-column"> Máy lọc nước</a>
+                    <a class="nav-link" href="<?php _WEB_HOST; ?>/vesperdienmay/maylocnuoc"><img src="<?php echo _WEB_HOST_TEMPLATES; ?>/images/icon/maylocnuoc.jpg" class="icon-column"> Máy lọc nước</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><img src="<?php echo _WEB_HOST_TEMPLATES; ?>/images/icon/tulanh.jpg" class="icon-column"> Tủ lạnh</a>
+                    <a class="nav-link" href="<?php _WEB_HOST; ?>/vesperdienmay/tulanh"><img src="<?php echo _WEB_HOST_TEMPLATES; ?>/images/icon/tulanh.jpg" class="icon-column"> Tủ lạnh</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><img src="<?php echo _WEB_HOST_TEMPLATES; ?>/images/icon/maylanh.jpg" class="icon-column"> Máy lạnh</a>
+                    <a class="nav-link" href="<?php _WEB_HOST; ?>/vesperdienmay/maylanh"><img src="<?php echo _WEB_HOST_TEMPLATES; ?>/images/icon/maylanh.jpg" class="icon-column"> Máy lạnh</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><img src="<?php echo _WEB_HOST_TEMPLATES; ?>/images/icon/tudong.jpg" class="icon-column"> Tủ đông</a>
+                    <a class="nav-link" href="<?php _WEB_HOST; ?>/vesperdienmay/tudong"><img src="<?php echo _WEB_HOST_TEMPLATES; ?>/images/icon/tudong.jpg" class="icon-column"> Tủ đông</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"> <img src="<?php echo _WEB_HOST_TEMPLATES; ?>/images/icon/maynuocnong.jpg" class="icon-column"> Máy nước nóng</a>
+                    <a class="nav-link" href="<?php _WEB_HOST; ?>/vesperdienmay/maynuocnong"> <img src="<?php echo _WEB_HOST_TEMPLATES; ?>/images/icon/maynuocnong.jpg" class="icon-column"> Máy nước nóng</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"> <img src="<?php echo _WEB_HOST_TEMPLATES; ?>/images/icon/tivi.jpg" class="icon-column"> Ti vi</a>
+                    <a class="nav-link" href="<?php _WEB_HOST; ?>/vesperdienmay/tivi"> <img src="<?php echo _WEB_HOST_TEMPLATES; ?>/images/icon/tivi.jpg" class="icon-column"> Ti vi</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"> <img src="<?php echo _WEB_HOST_TEMPLATES; ?>/images/icon/loa.jpg" class="icon-column"> Loa</a>
+                    <a class="nav-link" href="<?php _WEB_HOST; ?>/vesperdienmay/loa"> <img src="<?php echo _WEB_HOST_TEMPLATES; ?>/images/icon/loa.jpg" class="icon-column"> Loa</a>
                 </li>
             </ul>
         </div>
@@ -130,30 +130,7 @@
                     ?>
                 </div>
 
-                <!-- Tủ lạnh -->
-                <h2 class="tilte-content text-uppercase">Tủ đông</h2>
-                <div class="row">
-                    <?php
-                    $queryTuDong = getRaw("SELECT * FROM sanpham WHERE id_lsp = 3 ORDER BY update_at DESC, create_at DESC  limit 8");
-                    if (!empty($queryTuDong)) :
-                        foreach ($queryTuDong as $item):
-                    ?>
-                            <a href="tulanh/view.php?sp=<?php echo $item['ten_sp'] ?>" class="col-3 main-item card" title="<?php echo $item['ten_sp']; ?>">
-                                <img src="<?php echo _WEB_HOST_TEMPLATES; ?>/images/tudong/<?php echo $item['hinhanh']; ?>" class="card-img-top img-item" onmouseenter="increaseSize(this)" onmouseout="decreaseSize(this)">
-                                <div class="card-body">
-                                    <p class="card-title ten-item"><?php echo limitString($item['ten_sp']); ?></p>
-                                    <p class="card-text gia-item"><?php echo showCurrency($item['giahientai_sp']); ?></p>
-                                    <?php echo !empty($item['giagoc_sp']) ? '<p class="card-text giacu-item">' . showCurrency($item['giagoc_sp']) . '</p>' : null ?>
-                                    <span class="phantram-item"><?php echo !empty(percentage($item['giagoc_sp'], $item['giahientai_sp'])) ? percentage($item['giagoc_sp'], $item['giahientai_sp']) : null; ?></span>
-                                </div>
-                            </a>
-                    <?php
-                        endforeach;
-                    endif;
-                    ?>
-                </div>
-
-                <!-- Tủ Đông -->
+                <!-- Tủ đông -->
                 <h2 class="tilte-content text-uppercase">Tủ đông</h2>
                 <div class="row">
                     <?php
