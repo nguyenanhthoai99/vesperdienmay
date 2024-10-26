@@ -16,7 +16,7 @@ require_once('../includes/session.php');
             foreach ($queryTuLanh as $item):
         ?>
                 <a href="view.php?sp=<?php echo $item['ten_sp'] ?>" class="col-3 main-item card" title="<?php echo $item['ten_sp']; ?>" style = "margin-right: 10px">
-                    <img src="<?php echo _WEB_HOST_TEMPLATES; ?>/images/tulanh/<?php echo $item['hinhanh']; ?>" class="card-img-top img-item" onmouseenter="increaseSize(this)" onmouseout="decreaseSize(this)">
+                <?php echo fileImage($item['id_lsp'], _WEB_HOST_TEMPLATES, $item['hinhanh']) ?>
                     <div class="card-body">
                         <p class="card-title ten-item"><?php echo limitString($item['ten_sp']); ?></p>
                         <p class="card-text gia-item"><?php echo showCurrency($item['giahientai_sp']); ?></p>

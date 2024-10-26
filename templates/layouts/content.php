@@ -34,7 +34,7 @@
 
         <!-- Nội dung chính của trang -->
         <div class="col-8 content">
-            <a href="" class="sidebar img-thumbnail"><img src="<?php echo _WEB_HOST_TEMPLATES; ?>/images/sidebar/panasonic.jpg" alt="" class="img-sidebar"></a>
+            <a href="panasonic.php" class="sidebar img-thumbnail"><img src="<?php echo _WEB_HOST_TEMPLATES; ?>/images/sidebar/panasonic.jpg" alt="" class="img-sidebar"></a>
             <div class="main-content">
 
                 <!-- Máy giặt -->
@@ -46,7 +46,7 @@
                         foreach ($queryMaygiat as $item):
                     ?>
                             <a href="maygiat/view.php?sp=<?php echo $item['ten_sp'] ?>" class="col-3 main-item card" title="<?php echo $item['ten_sp']; ?>">
-                                <img src="<?php echo _WEB_HOST_TEMPLATES; ?>/images/maygiat/<?php echo $item['hinhanh']; ?>" class="card-img-top img-item" onmouseenter="increaseSize(this)" onmouseout="decreaseSize(this)">
+                            <?php echo fileImage($item['id_lsp'], _WEB_HOST_TEMPLATES, $item['hinhanh']) ?>
                                 <div class="card-body">
                                     <p class="card-title ten-item"><?php echo limitString($item['ten_sp']); ?></p>
                                     <p class="card-text gia-item"><?php echo showCurrency($item['giahientai_sp']); ?></p>
@@ -70,7 +70,7 @@
                         foreach ($queryMayLocNuoc as $item):
                     ?>
                             <a href="maylocnuoc/view.php?sp=<?php echo $item['ten_sp'] ?>" class="col-3 main-item card" title="<?php echo $item['ten_sp']; ?>">
-                                <img src="<?php echo _WEB_HOST_TEMPLATES; ?>/images/maylocnuoc/<?php echo $item['hinhanh']; ?>" class="card-img-top img-item" onmouseenter="increaseSize(this)" onmouseout="decreaseSize(this)">
+                            <?php echo fileImage($item['id_lsp'], _WEB_HOST_TEMPLATES, $item['hinhanh']) ?>
                                 <div class="card-body">
                                     <p class="card-title ten-item"><?php echo limitString($item['ten_sp']); ?></p>
                                     <p class="card-text gia-item"><?php echo showCurrency($item['giahientai_sp']); ?></p>
@@ -93,7 +93,7 @@
                         foreach ($queryTuLanh as $item):
                     ?>
                             <a href="tulanh/view.php?sp=<?php echo $item['ten_sp'] ?>" class="col-3 main-item card" title="<?php echo $item['ten_sp']; ?>">
-                                <img src="<?php echo _WEB_HOST_TEMPLATES; ?>/images/tulanh/<?php echo $item['hinhanh']; ?>" class="card-img-top img-item" onmouseenter="increaseSize(this)" onmouseout="decreaseSize(this)">
+                            <?php echo fileImage($item['id_lsp'], _WEB_HOST_TEMPLATES, $item['hinhanh']) ?>
                                 <div class="card-body">
                                     <p class="card-title ten-item"><?php echo limitString($item['ten_sp']); ?></p>
                                     <p class="card-text gia-item"><?php echo showCurrency($item['giahientai_sp']); ?></p>
@@ -116,7 +116,7 @@
                         foreach ($queryMayLanh as $item):
                     ?>
                             <a href="maylanh/view.php?sp=<?php echo $item['ten_sp'] ?>" id="main-maylanh" class="col-3 main-item card" title="<?php echo $item['ten_sp']; ?>">
-                                <img src="<?php echo _WEB_HOST_TEMPLATES; ?>/images/maylanh/<?php echo $item['hinhanh']; ?>" class="card-img-top img-item img-maylanh" onmouseenter="increaseSize(this)" onmouseout="decreaseSize(this)">
+                            <?php echo fileImage($item['id_lsp'], _WEB_HOST_TEMPLATES, $item['hinhanh']) ?>
                                 <div class="card-body">
                                     <p class="card-title ten-item"><?php echo limitString($item['ten_sp']); ?></p>
                                     <p class="card-text gia-item"><?php echo showCurrency($item['giahientai_sp']); ?></p>
@@ -139,7 +139,7 @@
                         foreach ($queryTuDong as $item):
                     ?>
                             <a href="tulanh/view.php?sp=<?php echo $item['ten_sp'] ?>" class="col-3 main-item card" title="<?php echo $item['ten_sp']; ?>">
-                                <img src="<?php echo _WEB_HOST_TEMPLATES; ?>/images/tudong/<?php echo $item['hinhanh']; ?>" class="card-img-top img-item" onmouseenter="increaseSize(this)" onmouseout="decreaseSize(this)">
+                            <?php echo fileImage($item['id_lsp'], _WEB_HOST_TEMPLATES, $item['hinhanh']) ?>
                                 <div class="card-body">
                                     <p class="card-title ten-item"><?php echo limitString($item['ten_sp']); ?></p>
                                     <p class="card-text gia-item"><?php echo showCurrency($item['giahientai_sp']); ?></p>
@@ -162,7 +162,7 @@
                         foreach ($queryMayNuocNong as $item):
                     ?>
                             <a href="tulanh/view.php?sp=<?php echo $item['ten_sp'] ?>" class="col-3 main-item card" title="<?php echo $item['ten_sp']; ?>">
-                                <img src="<?php echo _WEB_HOST_TEMPLATES; ?>/images/maynuocnong/<?php echo $item['hinhanh']; ?>" class="card-img-top img-item" onmouseenter="increaseSize(this)" onmouseout="decreaseSize(this)">
+                            <?php echo fileImage($item['id_lsp'], _WEB_HOST_TEMPLATES, $item['hinhanh']) ?>
                                 <div class="card-body">
                                     <p class="card-title ten-item"><?php echo limitString($item['ten_sp']); ?></p>
                                     <p class="card-text gia-item"><?php echo showCurrency($item['giahientai_sp']); ?></p>
@@ -185,7 +185,7 @@
                         foreach ($queryTivi as $item):
                     ?>
                             <a href="tulanh/view.php?sp=<?php echo $item['ten_sp'] ?>" class="col-3 main-item card" title="<?php echo $item['ten_sp']; ?>">
-                                <img src="<?php echo _WEB_HOST_TEMPLATES; ?>/images/tivi/<?php echo $item['hinhanh']; ?>" id="img-tivi" class="card-img-top img-item" onmouseenter="increaseSize(this)" onmouseout="decreaseSize(this)">
+                            <?php echo fileImage($item['id_lsp'], _WEB_HOST_TEMPLATES, $item['hinhanh']) ?>
                                 <div class="card-body">
                                     <p class="card-title ten-item"><?php echo limitString($item['ten_sp']); ?></p>
                                     <p class="card-text gia-item"><?php echo showCurrency($item['giahientai_sp']); ?></p>

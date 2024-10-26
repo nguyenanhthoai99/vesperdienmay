@@ -56,7 +56,7 @@ require_once(_WEB_PATH . '/includes/session.php');
                                 </ul>
                             <?php else: ?>
                                 <ul class="dropdown-menu" style="background:black;">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Thông tin tài khoản</a></li>
                                     <li><a class="dropdown-item" href="<?php echo _WEB_HOST ?>/auth/logout.php">Đăng xuất</a></li>
                                 </ul>
                             <?php endif; ?>

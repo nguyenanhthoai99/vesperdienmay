@@ -215,9 +215,38 @@ function percentage($giagoc, $giahientai)
     return number_format($kq) . "%";
 }
 
-function limitString($string, $limit = 30) {
+function limitString($string, $limit = 30)
+{
     if (mb_strlen($string) > $limit) {
         return mb_substr($string, 0, $limit) . '...';
     }
     return $string;
+}
+
+// hàm file image
+
+function fileImage($fileName = [], $host= '', $nameIamge)
+{
+    switch ($fileName) {
+        case 1:
+            echo "<img src=\"$host/images/maygiat/$nameIamge\" class=\"card-img-top img-item\" onmouseenter=\"increaseSize(this)\" onmouseout=\"decreaseSize(this)\">";
+            break;
+        case 2:
+            echo "<img src=\"$host/images/maylocnuoc/$nameIamge\" class=\"card-img-top img-item\" onmouseenter=\"increaseSize(this)\" onmouseout=\"decreaseSize(this)\">";
+            break;
+        case 3:
+            echo "<img src=\"$host/images/tudong/$nameIamge\" class=\"card-img-top img-item\" onmouseenter=\"increaseSize(this)\" onmouseout=\"decreaseSize(this)\">";
+            break;
+        case 4:
+            echo "<img src=\"$host/images/maynuocnong/$nameIamge\" class=\"card-img-top img-item\" onmouseenter=\"increaseSize(this)\" onmouseout=\"decreaseSize(this)\">";
+            break;
+        case 5:
+            echo "<img src=\"$host/images/tivi/$nameIamge\" id=\"img-tivi\" class=\"card-img-top img-item\" onmouseenter=\"increaseSize(this)\" onmouseout=\"decreaseSize(this)\">";
+            break;
+        case 6:
+            echo "<img src=\"$host/images/tulanh/$nameIamge\" class=\"card-img-top img-item\" onmouseenter=\"increaseSize(this)\" onmouseout=\"decreaseSize(this)\">";
+            break;
+        default:
+        echo "<img src=\"$host/images/maylanh/$nameIamge\" class=\"card-img-top img-item img-maylanh\" onmouseenter=\"increaseSize(this)\" onmouseout=\"decreaseSize(this)\">";
+    }
 }

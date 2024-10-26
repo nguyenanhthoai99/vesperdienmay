@@ -1,23 +1,23 @@
 <?php
 session_start();
-require_once('../config.php');
-require_once('../includes/connect.php');
-require_once('../includes/function.php');
-$data = ['pageTitle' => 'Ti vi'];
+require_once('config.php');
+require_once('./includes/connect.php');
+require_once('./includes/function.php');
+$data = ['pageTitle' => 'Thương hiệu Panasonic'];
 layouts('header', $data);
-require_once('../includes/database.php');
-require_once('../includes/session.php');
+require_once('./includes/database.php');
+require_once('./includes/session.php');
 ?>
-
 <div class="container" style="margin-top: 100px">
     <div class="row main-lsp" style="margin:0px">
         <?php
-        $queryTivi = getRaw("SELECT * FROM sanpham WHERE id_lsp = 5 ORDER BY update_at DESC, create_at DESC");
-        if (!empty($queryTivi)) :
-            foreach ($queryTivi as $item):
+        $queryTuLanh = getRaw("SELECT * FROM sanpham WHERE id_th = 5 ORDER BY update_at DESC, create_at DESC");
+        if (!empty($queryTuLanh)) :
+            foreach ($queryTuLanh as $item):
         ?>
-               <a href="view.php?sp=<?php echo $item['ten_sp'] ?>" class="col-3 main-item card" title="<?php echo $item['ten_sp']; ?>" style = "margin-right: 10px">
-               <?php echo fileImage($item['id_lsp'], _WEB_HOST_TEMPLATES, $item['hinhanh']) ?>
+
+                <a href="view.php?sp=<?php echo $item['ten_sp'] ?>" class="col-3 main-item card" title="<?php echo $item['ten_sp']; ?>" style="margin-right: 10px">
+                    <?php echo fileImage($item['id_lsp'], _WEB_HOST_TEMPLATES, $item['hinhanh']) ?>
                     <div class="card-body">
                         <p class="card-title ten-item"><?php echo limitString($item['ten_sp']); ?></p>
                         <p class="card-text gia-item"><?php echo showCurrency($item['giahientai_sp']); ?></p>
@@ -34,5 +34,5 @@ require_once('../includes/session.php');
 </div>
 
 <?php
-layouts('footer-login');
+layouts('footer');
 ?>
