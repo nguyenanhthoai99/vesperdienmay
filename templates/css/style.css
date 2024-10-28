@@ -182,6 +182,7 @@ body {
     margin-bottom: 5px;
     width: 212px;
     height: 350px;
+    text-decoration: none;
 }
 
 .main-item p {
@@ -230,7 +231,46 @@ body {
 /* sản phẩm chi tiết */
 
 .img-sanphamchitiet {
-    height: 700px;
+    padding-left: 70px;
+    height: 400px;
+}
+
+.content-spct tr {
+    margin: 10px 0px;
+}
+
+.main-btnaddnumber {
+    display: flex;
+}
+
+.btn-mua a {
+    color: white;
+    text-decoration: none;
+}
+
+.phantram-goiy {
+    font-size: 14px;
+    color: red;
+    position: relative;
+    top: -40px;
+    right: -85px;
+}
+
+.title-goiy {
+    margin-left: 100px;
+}
+
+.content-goiy {
+    margin-left: 100px;
+}
+
+.main-gioy {
+    margin-top: 15px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    width: 212px;
+    height: 350px;
+    text-decoration: none;
 }
 
 /* sidebar */

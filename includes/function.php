@@ -250,3 +250,31 @@ function fileImage($fileName = [], $host= '', $nameIamge)
         echo "<img src=\"$host/images/maylanh/$nameIamge\" class=\"card-img-top img-item img-maylanh\" onmouseenter=\"increaseSize(this)\" onmouseout=\"decreaseSize(this)\">";
     }
 }
+
+
+// Hàm link sản phẩm chi tiết
+function linkSp($fileName = [], $host, $nameSp)
+{
+    switch ($fileName) {
+        case 1:
+            echo "$host/maygiat/view.php?sp=$nameSp";
+            break;
+        case 2:
+            echo "$host/maylocnuoc/view.php?sp=$nameSp";
+            break;
+        case 3:
+            echo "$host/tudong/view.php?sp=$nameSp";
+            break;
+        case 4:
+            echo "$host/maynuocnong/view.php?sp=$nameSp";
+            break;
+        case 5:
+            echo "$host/tivi/view.php?sp=$nameSp";
+            break;
+        case 6:
+            echo "$host/tulanh/view.php?sp=$nameSp";
+            break;
+        default:
+        echo "$host/maylanh/view.php?sp=$nameSp";
+    }
+}

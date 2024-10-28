@@ -53,7 +53,6 @@
                                     <?php echo !empty($item['giagoc_sp']) ? '<p class="card-text giacu-item">' . showCurrency($item['giagoc_sp']) . '</p>' : null ?>
                                     <span class="phantram-item"><?php echo !empty(percentage($item['giagoc_sp'], $item['giahientai_sp'])) ? percentage($item['giagoc_sp'], $item['giahientai_sp']) : null; ?></span>
                                 </div>
-                                <input type="hidden" name="id_sp" value="<?php echo $item['id_sp'] ?>">
                             </a>
                     <?php
                         endforeach;

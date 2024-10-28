@@ -16,7 +16,7 @@ require_once('./includes/session.php');
             foreach ($queryTuLanh as $item):
         ?>
 
-                <a href="view.php?sp=<?php echo $item['ten_sp'] ?>" class="col-3 main-item card" title="<?php echo $item['ten_sp']; ?>" style="margin-right: 10px">
+                <a href="<?php linkSp($item['id_lsp'],_WEB_HOST, $item['ten_sp']);?>" class="col-3 main-item card" title="<?php echo $item['ten_sp']; ?>" style="margin-right: 10px">
                     <?php echo fileImage($item['id_lsp'], _WEB_HOST_TEMPLATES, $item['hinhanh']) ?>
                     <div class="card-body">
                         <p class="card-title ten-item"><?php echo limitString($item['ten_sp']); ?></p>
@@ -34,5 +34,5 @@ require_once('./includes/session.php');
 </div>
 
 <?php
-layouts('footer');
+layouts('footer-login');
 ?>
