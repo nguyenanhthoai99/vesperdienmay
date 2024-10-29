@@ -137,7 +137,7 @@
                     if (!empty($queryTuDong)) :
                         foreach ($queryTuDong as $item):
                     ?>
-                            <a href="tulanh/view.php?sp=<?php echo $item['ten_sp'] ?>" class="col-3 main-item card" title="<?php echo $item['ten_sp']; ?>">
+                            <a href="tudong/view.php?sp=<?php echo $item['ten_sp'] ?>" class="col-3 main-item card" title="<?php echo $item['ten_sp']; ?>">
                             <?php echo fileImage($item['id_lsp'], _WEB_HOST_TEMPLATES, $item['hinhanh']) ?>
                                 <div class="card-body">
                                     <p class="card-title ten-item"><?php echo limitString($item['ten_sp']); ?></p>
@@ -183,7 +183,7 @@
                     if (!empty($queryTivi)) :
                         foreach ($queryTivi as $item):
                     ?>
-                            <a href="tulanh/view.php?sp=<?php echo $item['ten_sp'] ?>" class="col-3 main-item card" title="<?php echo $item['ten_sp']; ?>">
+                            <a href="tivi/view.php?sp=<?php echo $item['ten_sp'] ?>" class="col-3 main-item card" title="<?php echo $item['ten_sp']; ?>">
                             <?php echo fileImage($item['id_lsp'], _WEB_HOST_TEMPLATES, $item['hinhanh']) ?>
                                 <div class="card-body">
                                     <p class="card-title ten-item"><?php echo limitString($item['ten_sp']); ?></p>

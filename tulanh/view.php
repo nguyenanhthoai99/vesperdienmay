@@ -21,7 +21,7 @@ $giaLon = $query['giahientai_sp'] + 5000000;
             <img src="<?php echo _WEB_HOST_TEMPLATES; ?>/images/tulanh/<?php echo $query['hinhanh']; ?>" class="img-sanphamchitiet">
         </div>
         <div class="col-7">
-            <table class="table">
+            <table class="table table-borderless">
                 <h3 class="tieudieu-spct text-center">Thông tin chi tiết</h3>
                 <tbody>
                     <div class="row">
@@ -104,6 +104,13 @@ $giaLon = $query['giahientai_sp'] + 5000000;
                             <div class="col-9">
                                 <td><?php echo $query['nam'] ?></td>
                             </div>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p class="card-text gia-item"><?php echo showCurrency($query['giahientai_sp']); ?></p>
+                                <?php echo !empty($query['giagoc_sp']) ? '<p class="card-text giacu-item">' . showCurrency($query['giagoc_sp']) . '</p>' : null ?>
+                                <span class="phantram-goiy"><?php echo !empty(percentage($query['giagoc_sp'], $query['giahientai_sp'])) ? percentage($query['giagoc_sp'], $query['giahientai_sp']) : null; ?></span>
+                            </td>
                         </tr>
                     </div>
                 </tbody>

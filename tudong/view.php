@@ -16,19 +16,20 @@ $giaLon = $query['giahientai_sp'] + 5000000;
 ?>
 
 <div class="container-fluid" style="margin-top: 100px; background: white">
+    <!-- Thông tin sản phẩm -->
     <div class="row" style="padding:15px 5px">
         <div class="col-5">
             <img src="<?php echo _WEB_HOST_TEMPLATES; ?>/images/tudong/<?php echo $query['hinhanh']; ?>" class="img-sanphamchitiet">
         </div>
         <div class="col-7">
-            <table class="table">
+            <table class="table table-borderless" style="margin-bottom:0px;">
                 <h3 class="tieudieu-spct text-center">Thông tin chi tiết</h3>
                 <tbody>
                     <div class="row">
                         <tr>
                             <div class="col-3">
                                 <td>
-                                Loại tủ:
+                                    Loại tủ:
                                 </td>
                             </div>
                             <div class="col-9">
@@ -38,7 +39,7 @@ $giaLon = $query['giahientai_sp'] + 5000000;
                         <tr>
                             <div class="col-3">
                                 <td>
-                                Dung tích tổng:
+                                    Dung tích tổng:
                                 </td>
                             </div>
                             <div class="col-9">
@@ -48,7 +49,7 @@ $giaLon = $query['giahientai_sp'] + 5000000;
                         <tr>
                             <div class="col-3">
                                 <td>
-                                Số cửa:
+                                    Số cửa:
                                 </td>
                             </div>
                             <div class="col-9">
@@ -58,7 +59,7 @@ $giaLon = $query['giahientai_sp'] + 5000000;
                         <tr>
                             <div class="col-3">
                                 <td>
-                                Điện năng tiêu thụ:
+                                    Điện năng tiêu thụ:
                                 </td>
                             </div>
                             <div class="col-9">
@@ -68,7 +69,7 @@ $giaLon = $query['giahientai_sp'] + 5000000;
                         <tr>
                             <div class="col-3">
                                 <td>
-                                Công nghệ tích hợp:
+                                    Công nghệ tích hợp:
                                 </td>
                             </div>
                             <div class="col-9">
@@ -78,7 +79,7 @@ $giaLon = $query['giahientai_sp'] + 5000000;
                         <tr>
                             <div class="col-3">
                                 <td>
-                                Chất liệu dàn lạnh:
+                                    Chất liệu dàn lạnh:
                                 </td>
                             </div>
                             <div class="col-9">
@@ -88,7 +89,7 @@ $giaLon = $query['giahientai_sp'] + 5000000;
                         <tr>
                             <div class="col-3">
                                 <td>
-                                Chất liệu lòng tủ:
+                                    Chất liệu lòng tủ:
                                 </td>
                             </div>
                             <div class="col-9">
@@ -98,7 +99,7 @@ $giaLon = $query['giahientai_sp'] + 5000000;
                         <tr>
                             <div class="col-3">
                                 <td>
-                                Chất liệu bên ngoài:
+                                    Chất liệu bên ngoài:
                                 </td>
                             </div>
                             <div class="col-9">
@@ -108,7 +109,7 @@ $giaLon = $query['giahientai_sp'] + 5000000;
                         <tr>
                             <div class="col-3">
                                 <td>
-                                Độ ồn:
+                                    Độ ồn:
                                 </td>
                             </div>
                             <div class="col-9">
@@ -135,6 +136,13 @@ $giaLon = $query['giahientai_sp'] + 5000000;
                                 <td><?php echo $query['nam'] ?></td>
                             </div>
                         </tr>
+                        <tr>
+                            <td>
+                                <p class="card-text gia-item"><?php echo showCurrency($query['giahientai_sp']); ?></p>
+                                <?php echo !empty($query['giagoc_sp']) ? '<p class="card-text giacu-item">' . showCurrency($query['giagoc_sp']) . '</p>' : null ?>
+                                <span class="phantram-goiy"><?php echo !empty(percentage($query['giagoc_sp'], $query['giahientai_sp'])) ? percentage($query['giagoc_sp'], $query['giahientai_sp']) : null; ?></span>
+                            </td>
+                        </tr>
                     </div>
                 </tbody>
             </table>
@@ -157,9 +165,9 @@ $giaLon = $query['giahientai_sp'] + 5000000;
     </div>
 
     <!-- Sản phẩm gợi ý -->
-    <div class="main-goiy" style="margin: 100px 0px;">
-        <h3 class="title-goiy">Sản phẩm gợi ý cùng phân khúc</h3>
-        <div class="row content-goiy">
+    <div class="main-goiy" style="padding: 100px 0px;">
+            <h3 class="title-goiy">Sản phẩm gợi ý cùng phân khúc</h3>
+            <div class="row content-goiy">
             <?php
             $queryMaygiat = getRaw("SELECT * FROM sanpham WHERE id_lsp = $lsp AND giahientai_sp BETWEEN $giaNho AND $giaLon AND NOT id_sp = $id ORDER BY update_at DESC, create_at DESC  limit 10");
             if (!empty($queryMaygiat)) :

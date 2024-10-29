@@ -40,35 +40,36 @@ require_once(_WEB_PATH . '/includes/session.php');
                     </li>
 
                     <?php
-                    if (!empty(getSession('id_dangnhap'))) {
+                    if (!empty(getSession('id_dangnhap'))) :
                         $id_user = getSession('id_dangnhap');
                         $queryUser = oneRaw("SELECT * FROM users WHERE id_user = '$id_user'");
                     ?>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="<?php echo _WEB_HOST_TEMPLATES; ?>/images/users/<?php echo $queryUser['hinhanh_user'] ?>" class="img-user">
+                      <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="<?php echo _WEB_HOST_TEMPLATES; ?>/images/users/<?php echo $queryUser['hinhanh_user'] ?  $queryUser['hinhanh_user'] : 'default-account.jpg' ?>" class="img-user">
                             </a>
+                        <li class="nav-item dropdown">
+                          
                             <?php if ($queryUser['id_user'] == 1 && $queryUser['email'] == 'admin' && $queryUser['phan_quyen'] == 1) : ?>
-                                <ul class="dropdown-menu" style="background:black;">
+                                <ul class="dropdown-menu dropdown-menu-end" style="background:#2a83e9b0;">
                                     <li><a class="dropdown-item" href="#">Thông tin tài khoản</a></li>
                                     <li><a class="dropdown-item" href="#">Quản lý</a></li>
                                     <li><a class="dropdown-item" href="<?php echo _WEB_HOST ?>/auth/logout.php">Đăng xuất</a></li>
                                 </ul>
                             <?php else: ?>
-                                <ul class="dropdown-menu" style="background:black;">
+                                <ul class="dropdown-menu dropdown-menu-end" style="background:#2a83e9b0">
                                     <li><a class="dropdown-item" href="#">Thông tin tài khoản</a></li>
                                     <li><a class="dropdown-item" href="<?php echo _WEB_HOST ?>/auth/logout.php">Đăng xuất</a></li>
                                 </ul>
                             <?php endif; ?>
                         </li>
                     <?php
-                    } else {
+                    else :
                     ?>
                         <li class="nav-item">
                             <a class="nav-link btn btn-outline-primary" href="<?php echo _WEB_HOST ?>/auth/login.php"><i class="fa-solid fa-user"></i> Đăng nhập</a>
                         </li>
                     <?php
-                    }
+                    endif;
                     ?>
 
                     <li class="nav-item">

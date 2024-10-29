@@ -66,7 +66,6 @@ if (isPost()) {
         }
     }
 
-    // echo '<pre>'; print_r($errors); echo '</pre>';
     if (empty($errors)) {
 
         $activeToken = sha1(uniqid() . time());
@@ -96,7 +95,6 @@ if (isPost()) {
     }
 }
 
-
 $msg = getFlashData('msg');
 $msgType = getFlashData('msgType');
 $errors = getFlashData('errors');
@@ -112,7 +110,7 @@ $old = getFlashData('old');
         <?php
         !empty($msg) ? getMsg($msg, $msgType) : '';
         ?>
-        <form action="" method="post" enctype="multipart/form">
+        <form action="" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="">Họ và tên <mn style="color:red">*</mn></label>
                 <input type="text" class="mg-form form-control" name="fullname" placeholder="Họ và tên" value="<?php echo old('fullname', $old); ?>">
@@ -121,7 +119,7 @@ $old = getFlashData('old');
 
             <div class="form-group">
                 <label for="">Email <mn style="color:red">*</mn></label>
-                <input type="" class="mg-form form-control" name="email" placeholder="Địa chỉ Email" value="<?php echo old('email', $old); ?>">
+                <input type="text" class="mg-form form-control" name="email" placeholder="Địa chỉ Email" value="<?php echo old('email', $old); ?>">
                 <?php echo formError('email', ' <span class="error">', '</span>', $errors) ?>
             </div>
 

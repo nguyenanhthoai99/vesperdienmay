@@ -130,6 +130,7 @@ function isNumberFloat($number)
     return $checkNumber;
 }
 
+
 // hàm kiểm tra số điện thoại
 function isPhone($phone)
 {
@@ -225,7 +226,7 @@ function limitString($string, $limit = 30)
 
 // hàm file image
 
-function fileImage($fileName = [], $host= '', $nameIamge)
+function fileImage($fileName = [], $host = '', $nameIamge)
 {
     switch ($fileName) {
         case 1:
@@ -247,7 +248,7 @@ function fileImage($fileName = [], $host= '', $nameIamge)
             echo "<img src=\"$host/images/tulanh/$nameIamge\" class=\"card-img-top img-item\" onmouseenter=\"increaseSize(this)\" onmouseout=\"decreaseSize(this)\">";
             break;
         default:
-        echo "<img src=\"$host/images/maylanh/$nameIamge\" class=\"card-img-top img-item img-maylanh\" onmouseenter=\"increaseSize(this)\" onmouseout=\"decreaseSize(this)\">";
+            echo "<img src=\"$host/images/maylanh/$nameIamge\" class=\"card-img-top img-item img-maylanh\" onmouseenter=\"increaseSize(this)\" onmouseout=\"decreaseSize(this)\">";
     }
 }
 
@@ -275,6 +276,6 @@ function linkSp($fileName = [], $host, $nameSp)
             echo "$host/tulanh/view.php?sp=$nameSp";
             break;
         default:
-        echo "$host/maylanh/view.php?sp=$nameSp";
+            echo "$host/maylanh/view.php?sp=$nameSp";
     }
 }
