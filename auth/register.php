@@ -141,7 +141,7 @@ $old = getFlashData('old');
             </div>
 
             <div class="form-group">
-                <label for="">Mật Khẩu<mn style="color:red">*</mn></label>
+                <label for="">Nhập lại mật Khẩu<mn style="color:red">*</mn></label>
                 <input type="password" class="mg-form form-control" name="password_confirm" placeholder="Nhập lại mật khẩu"> <?php echo formError('password_confirm', ' <span class="error">', '</span>', $errors) ?>
             </div>
             <button type="submit" class="btn-login btn btn-primary btn-block" style="margin-top:20px;">Đăng ký</button>
