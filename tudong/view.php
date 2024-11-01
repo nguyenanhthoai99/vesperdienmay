@@ -22,7 +22,7 @@ $giaLon = $query['giahientai_sp'] + 5000000;
             <img src="<?php echo _WEB_HOST_TEMPLATES; ?>/images/tudong/<?php echo $query['hinhanh']; ?>" class="img-sanphamchitiet">
         </div>
         <div class="col-7">
-            <table class="table table-borderless" style="margin-bottom:0px;">
+            <form action="<?php _WEB_HOST; ?>/vesperdienmay/cart/dathang.php" method="post">
                 <h3 class="tieudieu-spct text-center">Thông tin chi tiết</h3>
                 <tbody>
                     <div class="row">
@@ -145,29 +145,30 @@ $giaLon = $query['giahientai_sp'] + 5000000;
                         </tr>
                     </div>
                 </tbody>
-            </table>
-            <div class="row">
-                <label for="soluong">Số lượng đặt mua:</label>
-                <div class="col-3 main-btnaddnumber">
-                    <button type="button" id="btn-Tru" name="btn-Tru" style="width:50px;" onclick="tru()">
-                        <i class="fa fa-minus"></i>
-                    </button>
-                    <input type="number" min="1" max="9" class="form-control" id="soluongmua" name="soluongmua" style="width:100px; text-align:center;" value="1">
-                    <button type="button" id="btn-Cong" name="btn-Cong" style="width:50px;" onclick="cong()">
-                        <i class="fa fa-plus"></i>
-                    </button>
+                </table>
+                <div class="row">
+                    <label for="soluong">Số lượng đặt mua:</label>
+                    <div class="col-3 main-btnaddnumber">
+                        <button type="button" id="btn-Tru" name="btn-Tru" style="width:50px;" onclick="tru()">
+                            <i class="fa fa-minus"></i>
+                        </button>
+                        <input type="number" min="1" max="9" class="form-control" id="soluongmua" name="soluongmua" style="width:100px; text-align:center;" value="1">
+                        <button type="button" id="btn-Cong" name="btn-Cong" style="width:50px;" onclick="cong()">
+                            <i class="fa fa-plus"></i>
+                        </button>
+                    </div>
+                    <input type="hidden" name="id_sp" value="<?php echo $id; ?>" />
+                    <div class="col-9">
+                        <button type="submit" style="width:100%" class="btn btn-primary btn-mua">Mua ngay</button>
+                    </div>
                 </div>
-                <div class="col-9">
-                    <button type="button" style="width:100%" class="btn btn-primary btn-mua"><a href="<?php echo _WEB_HOST; ?>/cart">Mua ngay</a></button>
-                </div>
-            </div>
+            </form>
         </div>
     </div>
-
     <!-- Sản phẩm gợi ý -->
     <div class="main-goiy" style="padding: 100px 0px;">
-            <h3 class="title-goiy">Sản phẩm gợi ý cùng phân khúc</h3>
-            <div class="row content-goiy">
+        <h3 class="title-goiy">Sản phẩm gợi ý cùng phân khúc</h3>
+        <div class="row content-goiy">
             <?php
             $queryMaygiat = getRaw("SELECT * FROM sanpham WHERE id_lsp = $lsp AND giahientai_sp BETWEEN $giaNho AND $giaLon AND NOT id_sp = $id ORDER BY update_at DESC, create_at DESC  limit 10");
             if (!empty($queryMaygiat)) :
