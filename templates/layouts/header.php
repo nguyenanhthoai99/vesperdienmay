@@ -25,7 +25,7 @@ require_once(_WEB_PATH . '/includes/session.php');
 <div class="container">
     <nav id="header" class="navbar navbar-expand-lg fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand ms-5" href="<?php echo _WEB_HOST; ?>/index.php"><img src="<?php echo _WEB_HOST_TEMPLATES ?>/images/icon/icon.jpg" class="hinh-icon" />Vesper Nguyễn</a>
+            <a class="navbar-brand ms-5" href="<?php echo _WEB_HOST; ?>"><img src="<?php echo _WEB_HOST_TEMPLATES ?>/images/icon/icon.jpg" class="hinh-icon" />Vesper Nguyễn</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -44,11 +44,11 @@ require_once(_WEB_PATH . '/includes/session.php');
                         $id_user = getSession('id_dangnhap');
                         $queryUser = oneRaw("SELECT * FROM users WHERE id_user = '$id_user'");
                     ?>
-                      <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="<?php echo _WEB_HOST_TEMPLATES; ?>/images/users/<?php echo $queryUser['hinhanh_user'] ?  $queryUser['hinhanh_user'] : 'default-account.jpg' ?>" class="img-user">
-                            </a>
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="<?php echo _WEB_HOST_TEMPLATES; ?>/images/users/<?php echo $queryUser['hinhanh_user'] ?  $queryUser['hinhanh_user'] : 'default-account.jpg' ?>" class="img-user">
+                        </a>
                         <li class="nav-item dropdown">
-                          
+
                             <?php if ($queryUser['id_user'] == 1 && $queryUser['email'] == 'admin' && $queryUser['phan_quyen'] == 1) : ?>
                                 <ul class="dropdown-menu dropdown-menu-end" style="background:#2a83e9b0;">
                                     <li><a class="dropdown-item" href="#">Thông tin tài khoản</a></li>
@@ -72,8 +72,18 @@ require_once(_WEB_PATH . '/includes/session.php');
                     endif;
                     ?>
 
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-outline-primary" href=""><i class="fa-solid fa-cart-shopping"></i> Giỏ hàng</a>
+                    <li class="nav-item giohang">
+                        <a class="nav-link btn btn-outline-primary" href="<?php echo _WEB_HOST ?>/cart/"><i class="fa-solid fa-cart-shopping"></i> Giỏ hàng</a>
+                        <span class="sohanghoa">
+                            <?php
+                            if (isset($_SESSION['cart'])) {
+                                $giohang = $_SESSION['cart'];
+                                if ($giohang != null) {
+                                    echo count($giohang);
+                                }
+                            }
+                            ?>
+                        </span>
                     </li>
                 </ul>
             </div>
