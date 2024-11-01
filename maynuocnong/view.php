@@ -21,105 +21,108 @@ $giaLon = $query['giahientai_sp'] + 5000000;
             <img src="<?php echo _WEB_HOST_TEMPLATES; ?>/images/maynuocnong/<?php echo $query['hinhanh']; ?>" class="img-sanphamchitiet">
         </div>
         <div class="col-7">
-            <table class="table table-borderless">
-                <h3 class="tieudieu-spct text-center">Thông tin chi tiết</h3>
-                <tbody>
-                    <div class="row">
-                        <tr>
-                            <div class="col-3">
+            <form action="<?php _WEB_HOST; ?>/vesperdienmay/cart/dathang.php" method="post">
+                <table class="table table-borderless">
+                    <h3 class="tieudieu-spct text-center">Thông tin chi tiết</h3>
+                    <tbody>
+                        <div class="row">
+                            <tr>
+                                <div class="col-3">
+                                    <td>
+                                        Loại máy:
+                                    </td>
+                                </div>
+                                <div class="col-9">
+                                    <td><?php echo $query['kieu_mnn'] ?></td>
+                                </div>
+                            </tr>
+                            <tr>
+                                <div class="col-3">
+                                    <td>
+                                        Công suất làm nóng:
+                                    </td>
+                                </div>
+                                <div class="col-9">
+                                    <td><?php echo $query['congsuat_mnn'] ?>W</td>
+                                </div>
+                            </tr>
+                            <tr>
+                                <div class="col-3">
+                                    <td>
+                                        Nhiệt độ làm nóng tối đa tham khảo:
+                                    </td>
+                                </div>
+                                <div class="col-9">
+                                    <td>Khoảng <?php echo $query['nhietdo_mnn'] ?>°C</td>
+                                </div>
+                            </tr>
+                            <tr>
+                                <div class="col-3">
+                                    <td>
+                                        Tiện ích:
+                                    </td>
+                                </div>
+                                <div class="col-9">
+                                    <td><?php echo $query['tienich_mnn'] ?></td>
+                                </div>
+                            </tr>
+                            <tr>
+                                <div class="col-3">
+                                    <td>
+                                        Áp lực nước hoạt động:
+                                    </td>
+                                </div>
+                                <div class="col-9">
+                                    <td><?php echo $query['apluc_mnn'] ?> Mpa</td>
+                                </div>
+                            </tr>
+                            <tr>
+                                <div class="col-3">
+                                    <td>
+                                        Sản xuất:
+                                    </td>
+                                </div>
+                                <div class="col-9">
+                                    <td><?php echo $query['ten_nsx'] ?></td>
+                                </div>
+                            </tr>
+                            <tr>
+                                <div class="col-3">
+                                    <td>
+                                        Năm:
+                                    </td>
+                                </div>
+                                <div class="col-9">
+                                    <td><?php echo $query['nam'] ?></td>
+                                </div>
+                            </tr>
+                            <tr>
                                 <td>
-                                    Loại máy:
+                                    <p class="card-text gia-item"><?php echo showCurrency($query['giahientai_sp']); ?></p>
+                                    <?php echo !empty($query['giagoc_sp']) ? '<p class="card-text giacu-item">' . showCurrency($query['giagoc_sp']) . '</p>' : null ?>
+                                    <span class="phantram-goiy"><?php echo !empty(percentage($query['giagoc_sp'], $query['giahientai_sp'])) ? percentage($query['giagoc_sp'], $query['giahientai_sp']) : null; ?></span>
                                 </td>
-                            </div>
-                            <div class="col-9">
-                                <td><?php echo $query['kieu_mnn'] ?></td>
-                            </div>
-                        </tr>
-                        <tr>
-                            <div class="col-3">
-                                <td>
-                                    Công suất làm nóng:
-                                </td>
-                            </div>
-                            <div class="col-9">
-                                <td><?php echo $query['congsuat_mnn'] ?>W</td>
-                            </div>
-                        </tr>
-                        <tr>
-                            <div class="col-3">
-                                <td>
-                                    Nhiệt độ làm nóng tối đa tham khảo:
-                                </td>
-                            </div>
-                            <div class="col-9">
-                                <td>Khoảng <?php echo $query['nhietdo_mnn'] ?>°C</td>
-                            </div>
-                        </tr>
-                        <tr>
-                            <div class="col-3">
-                                <td>
-                                    Tiện ích:
-                                </td>
-                            </div>
-                            <div class="col-9">
-                                <td><?php echo $query['tienich_mnn'] ?></td>
-                            </div>
-                        </tr>
-                        <tr>
-                            <div class="col-3">
-                                <td>
-                                    Áp lực nước hoạt động:
-                                </td>
-                            </div>
-                            <div class="col-9">
-                                <td><?php echo $query['apluc_mnn'] ?> Mpa</td>
-                            </div>
-                        </tr>
-                        <tr>
-                            <div class="col-3">
-                                <td>
-                                    Sản xuất:
-                                </td>
-                            </div>
-                            <div class="col-9">
-                                <td><?php echo $query['ten_nsx'] ?></td>
-                            </div>
-                        </tr>
-                        <tr>
-                            <div class="col-3">
-                                <td>
-                                    Năm:
-                                </td>
-                            </div>
-                            <div class="col-9">
-                                <td><?php echo $query['nam'] ?></td>
-                            </div>
-                        </tr>
-                        <tr>
-                            <td>
-                                <p class="card-text gia-item"><?php echo showCurrency($query['giahientai_sp']); ?></p>
-                                <?php echo !empty($query['giagoc_sp']) ? '<p class="card-text giacu-item">' . showCurrency($query['giagoc_sp']) . '</p>' : null ?>
-                                <span class="phantram-goiy"><?php echo !empty(percentage($query['giagoc_sp'], $query['giahientai_sp'])) ? percentage($query['giagoc_sp'], $query['giahientai_sp']) : null; ?></span>
-                            </td>
-                        </tr>
+                            </tr>
+                        </div>
+                    </tbody>
+                </table>
+                <div class="row">
+                    <label for="soluong">Số lượng đặt mua:</label>
+                    <div class="col-3 main-btnaddnumber">
+                        <button type="button" id="btn-Tru" name="btn-Tru" style="width:50px;" onclick="tru()">
+                            <i class="fa fa-minus"></i>
+                        </button>
+                        <input type="number" min="1" max="9" class="form-control" id="soluongmua" name="soluongmua" style="width:100px; text-align:center;" value="1">
+                        <button type="button" id="btn-Cong" name="btn-Cong" style="width:50px;" onclick="cong()">
+                            <i class="fa fa-plus"></i>
+                        </button>
                     </div>
-                </tbody>
-            </table>
-            <div class="row">
-                <label for="soluong">Số lượng đặt mua:</label>
-                <div class="col-3 main-btnaddnumber">
-                    <button type="button" id="btn-Tru" name="btn-Tru" style="width:50px;" onclick="tru()">
-                        <i class="fa fa-minus"></i>
-                    </button>
-                    <input type="number" min="1" max="9" class="form-control" id="soluongmua" name="soluongmua" style="width:100px; text-align:center;" value="1">
-                    <button type="button" id="btn-Cong" name="btn-Cong" style="width:50px;" onclick="cong()">
-                        <i class="fa fa-plus"></i>
-                    </button>
+                    <input type="hidden" name="id_sp" value="<?php echo $id; ?>" />
+                    <div class="col-9">
+                        <button type="submit" style="width:100%" class="btn btn-primary btn-mua">Mua ngay</button>
+                    </div>
                 </div>
-                <div class="col-9">
-                    <button type="button" style="width:100%" class="btn btn-primary btn-mua"><a href="<?php echo _WEB_HOST; ?>/cart">Mua ngay</a></button>
-                </div>
-            </div>
+            </form>
         </div>
     </div>
 
