@@ -183,19 +183,22 @@ function old($fileName, $oldData, $default = null)
 function isLogin()
 {
     $checkLogin = false;
+    // kiểm tra cookie có không
+    if (isset($_COOKIE['user_login'])) {
+        $checkLogin = true;
+    }
     //Kiểm tra có tokenLogin không
-    if (getSession('tokenLogin')) {
+    if (!empty(getSession('tokenLogin'))) {
         $tokenLogin = getSession('tokenLogin');
-
         // Kiểm tra token có giống trong database không
         $queryToken = "SELECT user_id FROM tokenlogin WHERE token = '$tokenLogin'";
-
         if (!empty($queryToken)) {
             $checkLogin = true;
         } else {
             removeSession('tokenLogin');
         }
     }
+
     return $checkLogin;
 }
 
