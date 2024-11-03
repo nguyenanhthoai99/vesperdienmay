@@ -15,4 +15,5 @@ require_once('./includes/session.php');
 
 require_once('./templates/layouts/content.php');
 require_once('./templates/layouts/footer.php');
+
 ?>
