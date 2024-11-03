@@ -50,6 +50,7 @@ require_once(_WEB_PATH . '/includes/session.php');
                         foreach ($queryCheckEmail as $item) {
                             if (password_verify($item['email'], $checkSession)){
                                 $email = $item['email'];
+                                break;
                             }
                         }
 
@@ -62,8 +63,8 @@ require_once(_WEB_PATH . '/includes/session.php');
 
                             <?php if (!empty($checkSession)) : ?>
                                 <ul class="dropdown-menu dropdown-menu-end" style="background:#2a83e9b0;">
-                                    <li><a class="dropdown-item" href="#">Thông tin tài khoản</a></li>
-                                    <li><a class="dropdown-item" href="#">Quản lý</a></li>
+                                    <li><a class="dropdown-item" href="<?php _WEB_HOST;?>/vesperdienmay/auth/profile.php">Thông tin tài khoản</a></li>
+                                    <li><a class="dropdown-item" href="<?php _WEB_HOST;?>/vesperdienmay/admin/dashboard.php">Quản lý</a></li>
                                     <li><a class="dropdown-item" href="<?php echo _WEB_HOST ?>/auth/logout.php">Đăng xuất</a></li>
                                 </ul>
                             <?php else: ?>

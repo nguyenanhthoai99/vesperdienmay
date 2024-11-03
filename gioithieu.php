@@ -1,11 +1,17 @@
 <?php
-require_once('config.php');
+session_start();
+require_once('./config.php');
 require_once(_WEB_PATH . '/includes/function.php');
-layouts('header');
+require_once(_WEB_PATH . '/includes/connect.php');
+
+$data = ['pageTitle' => 'Giới thiệu trang'];
+layouts('header', $data);
+
+require_once(_WEB_PATH . '/includes/database.php');
+require_once(_WEB_PATH . '/includes/session.php');
 ?>
 
-
-<div class="container">
+<div class="container" style="margin-top: 100px;">
     <div class="mt-5">
         <!-- main giới thiệu -->
         <div class="container mt-1 main-gthieu">
