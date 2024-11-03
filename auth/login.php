@@ -6,6 +6,7 @@ require_once(_WEB_PATH . '/includes/connect.php');
 
 $data = ['pageTitle' => 'Đăng nhập tài khoản'];
 layouts('header', $data);
+
 require_once(_WEB_PATH . '/includes/database.php');
 require_once(_WEB_PATH . '/includes/session.php');
 
@@ -18,13 +19,12 @@ if (isPost()) {
     if (!empty(trim($filterAll['email'])) && !empty(trim($filterAll['mat_khau']))) {
         $email = $filterAll['email'];
         $password = $filterAll['mat_khau'];
-
         // Truy vấn đến database
         $userQuery = oneRaw("SELECT * FROM users WHERE email = '$email'");
         if (!empty($userQuery)) {
             $passwordHash = $userQuery['mat_khau'];
             $userId = $userQuery['id_user'];
-        
+
             if (password_verify($password, $passwordHash)) {
                 // Tạo token login
                 $tokenLogin = sha1(uniqid() . time());
@@ -38,10 +38,20 @@ if (isPost()) {
                 $insertStatus = insert('tokenLogin', $dataInsert);
 
                 if ($insertStatus) {
-                    //lưu token vào session
-                    setSession('id_dangnhap', $userId);
-                    setSession('tokenLogin', $tokenLogin);
-                    redirect(_WEB_HOST . '/index.php');
+
+                    if (isset($filterAll['ghidangnhap'])) {
+                        //lưu token vào session
+                        setSession('user_login', $email);
+                        setSession('tokenLogin', $tokenLogin);
+                        $emailUser  =  password_hash($email, PASSWORD_DEFAULT);
+                        setcookie('user_login', $emailUser, time() + (60 * 60 * 24 * 30 * 12), '/', '', 0);
+                        redirect(_WEB_HOST . '/index.php');
+                    } else {
+                        //lưu token vào session
+                        setSession('user_login', $email);
+                        setSession('tokenLogin', $tokenLogin);
+                        redirect(_WEB_HOST . '/index.php');
+                    }
                 } else {
                     setFlashData('msg', 'Hệ thống đang lỗi vui lòng thử lại sau!');
                     setFlashData('msgType', 'danger');
@@ -72,7 +82,6 @@ $old = getFlashData('old');
 
         <h2 class="title-login">ĐĂNG NHẬP TÀI KHOẢN</h2>
         <p class="text-center title-login">Bạn chưa có tài khoản ?<a href="<?php echo _WEB_HOST ?>/auth/register.php"> Đăng ký tại đây</a></p>
-
         <?php
         !empty($msg) ? getMsg($msg, $msgType) : '';
         ?>
@@ -84,6 +93,10 @@ $old = getFlashData('old');
             <div class="form-group">
                 <label for="">Mật Khẩu<mn style="color:red">*</mn></label>
                 <input type="password" class="mg-form form-control" name="mat_khau" placeholder="Mật khẩu">
+            </div>
+            <div class="form-group">
+                <input type="checkbox" class="form-check-input" id="ghidangnhap" name="ghidangnhap">
+                <label class="form-check-label" for="ghidangnhap">Ghi Nhớ Đăng Nhập</label>
             </div>
             <p class="">Quên mật khẩu? Nhấn vào<a href="<?php echo _WEB_HOST ?>/auth/forgot.php"> đây</a></p>
             <button type="submit" class="btn-login btn btn-primary btn-block">Đăng nhập</button>
