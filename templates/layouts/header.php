@@ -40,16 +40,27 @@ require_once(_WEB_PATH . '/includes/session.php');
                     </li>
 
                     <?php
-                    if (!empty(getSession('id_dangnhap'))) :
-                        $id_user = getSession('id_dangnhap');
-                        $queryUser = oneRaw("SELECT * FROM users WHERE id_user = '$id_user'");
+                    $checkSession = getSession('user_login');
+                    if (!empty($_COOKIE['user_login'])) {
+                        $checkSession =  $_COOKIE['user_login'];
+                    }
+
+                    if (!empty(getSession('user_login')) || !empty($_COOKIE['user_login'])) :
+                        $queryCheckEmail = getRaw("SELECT email FROM users");
+                        foreach ($queryCheckEmail as $item) {
+                            if (password_verify($item['email'], $checkSession)){
+                                $email = $item['email'];
+                            }
+                        }
+
+                        $queryUser = oneRaw("SELECT * FROM users WHERE email = '$email'");
                     ?>
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <img src="<?php echo _WEB_HOST_TEMPLATES; ?>/images/users/<?php echo $queryUser['hinhanh_user'] ?  $queryUser['hinhanh_user'] : 'default-account.jpg' ?>" class="img-user">
                         </a>
                         <li class="nav-item dropdown">
 
-                            <?php if ($queryUser['id_user'] == 1 && $queryUser['email'] == 'admin' && $queryUser['phan_quyen'] == 1) : ?>
+                            <?php if (!empty($checkSession)) : ?>
                                 <ul class="dropdown-menu dropdown-menu-end" style="background:#2a83e9b0;">
                                     <li><a class="dropdown-item" href="#">Thông tin tài khoản</a></li>
                                     <li><a class="dropdown-item" href="#">Quản lý</a></li>
@@ -58,6 +69,7 @@ require_once(_WEB_PATH . '/includes/session.php');
                             <?php else: ?>
                                 <ul class="dropdown-menu dropdown-menu-end" style="background:#2a83e9b0">
                                     <li><a class="dropdown-item" href="#">Thông tin tài khoản</a></li>
+                                    <li><a class="dropdown-item" href="#">Đơn hàng</a></li>
                                     <li><a class="dropdown-item" href="<?php echo _WEB_HOST ?>/auth/logout.php">Đăng xuất</a></li>
                                 </ul>
                             <?php endif; ?>
