@@ -244,6 +244,46 @@ body {
     text-decoration: none;
 }
 
+.btn-itemPage {
+    margin: 0px 5px;
+    background-color: #1075e9;
+    border: 1px solid #1075e9;
+    border-radius: 20px;
+    width: 40px;
+    height: 40px;
+}
+
+.itemPage-disabled {
+    background-color: silver;
+    border: 1px solid silver;
+    border-radius: 20px;
+    width: 40px;
+    height: 40px;
+
+}
+
+.pageDisabled {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+}
+
+.itemPage {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+}
+
+.pageFirst {
+    text-decoration: none;
+}
+
+.pageChuyen {
+    text-decoration: none;
+    color: rgba(167, 139, 139, 0.603);
+    font-size: 20px;
+}
+
 /* sản phẩm chi tiết */
 
 .img-sanphamchitiet {

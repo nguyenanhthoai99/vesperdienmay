@@ -282,3 +282,37 @@ function linkSp($fileName = [], $host, $nameSp)
             echo "$host/maylanh/view.php?sp=$nameSp";
     }
 }
+
+// Hàm phân trang
+function page($page, $tongPage)
+{
+    if ($page > 3) {
+        $first_page = 1;
+        echo "<a href=\"?page= $first_page\" class=\"pageChuyen\"><i class=\"fa-solid fa-angles-left\" style=\"margin: 0px 5px;\"></i></a>";
+    }
+
+    if ($page > 1) {
+        $prePage = $page - 1;
+        echo "<a href=\"?page=$prePage\" class=\"pageChuyen\"><i class=\"fa-solid fa-chevron-left\" style=\"margin: 0px 5px;\"></i></a>";
+    }
+
+    for ($num = 1; $num <= $tongPage; $num++) {
+        if ($num != $page) {
+            if ($num > $page - 3 && $num < $page + 3) {
+                echo "<button class=\"btn-itemPage\"><a href=\"?page=$num\" class=\"itemPage\">$num</a></button>";
+            }
+        } else {
+            echo "<button class=\"itemPage-disabled\"><a class=\"pageDisabled\" style=\"cursor: not-allowed;\">$num</a></button>";
+        }
+    }
+
+    if ($page < $tongPage - 1) {
+        $nextPage = $page + 1;
+        echo "<a href=\"?page=$nextPage\" class=\"pageChuyen\"><i class=\"fa-solid fa-chevron-right\" style=\"margin: 0px 5px;\"></i></a>";
+    }
+
+    if ($page < $tongPage - 3) {
+        $endPage = $tongPage;
+        echo "<a href=\"?page=$endPage\" class=\"pageChuyen\"><i class=\"fa-solid fa-angles-right\" style=\"margin: 0px 5px;\"></i></a>";
+    }
+}

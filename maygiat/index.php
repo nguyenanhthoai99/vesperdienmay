@@ -11,12 +11,17 @@ require_once('../includes/session.php');
 <div class="container" style="margin-top: 100px">
     <div class="row main-lsp" style="margin:0px">
         <?php
-        $queryMaygiat = getRaw("SELECT * FROM sanpham WHERE id_lsp = 1 ORDER BY update_at DESC, create_at DESC");
+        $page = !empty($_GET['page']) ? $_GET['page'] : 1;
+        $itemPage = 10;
+        $offset = ($page - 1) * $itemPage;
+        $queryMaygiat = getRaw("SELECT * FROM sanpham WHERE id_lsp = 1 ORDER BY update_at DESC, create_at DESC LIMIT " . $itemPage . " OFFSET " . $offset);
+        $tongMayGiat = getRows("SELECT * FROM sanpham WHERE id_lsp = 1");
+        $tongPage = ceil($tongMayGiat / $itemPage);
         if (!empty($queryMaygiat)) :
             foreach ($queryMaygiat as $item):
         ?>
-                <a href="view.php?sp=<?php echo $item['ten_sp'] ?>" class="col-3 main-item card" title="<?php echo $item['ten_sp']; ?>" style = "margin-right: 10px">
-                <?php echo fileImage($item['id_lsp'], _WEB_HOST_TEMPLATES, $item['hinhanh']) ?>
+                <a href="view.php?sp=<?php echo $item['ten_sp'] ?>" class="col-3 main-item card" title="<?php echo $item['ten_sp']; ?>" style="margin-right: 10px">
+                    <?php echo fileImage($item['id_lsp'], _WEB_HOST_TEMPLATES, $item['hinhanh']) ?>
                     <div class="card-body">
                         <p class="card-title ten-item"><?php echo limitString($item['ten_sp']); ?></p>
                         <p class="card-text gia-item"><?php echo showCurrency($item['giahientai_sp']); ?></p>
@@ -29,6 +34,11 @@ require_once('../includes/session.php');
             endforeach;
         endif;
         ?>
+    </div>
+    <div>
+        <div class="text-center">
+            <?php echo page($page, $tongPage) ?>
+        </div>
     </div>
 </div>
 
