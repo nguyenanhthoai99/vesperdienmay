@@ -38,7 +38,6 @@ if (isPost()) {
                 $insertStatus = insert('tokenLogin', $dataInsert);
 
                 if ($insertStatus) {
-
                     if (isset($filterAll['ghidangnhap'])) {
                         //lưu token vào session
                         setSession('user_login', $email);

@@ -44,7 +44,7 @@ require_once(_WEB_PATH . '/includes/session.php');
                     if (!empty($_COOKIE['user_login'])) {
                         $checkSession =  $_COOKIE['user_login'];
                     }
-
+                    $email = getSession('user_login');
                     if (!empty(getSession('user_login')) || !empty($_COOKIE['user_login'])) :
                         $queryCheckEmail = getRaw("SELECT email FROM users");
                         foreach ($queryCheckEmail as $item) {
@@ -53,7 +53,7 @@ require_once(_WEB_PATH . '/includes/session.php');
                                 break;
                             }
                         }
-
+                        
                         $queryUser = oneRaw("SELECT * FROM users WHERE email = '$email'");
                     ?>
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -61,7 +61,7 @@ require_once(_WEB_PATH . '/includes/session.php');
                         </a>
                         <li class="nav-item dropdown">
 
-                            <?php if (!empty($checkSession)) : ?>
+                            <?php if (!empty($checkSession) && $queryUser['email'] == 'admin'): ?>
                                 <ul class="dropdown-menu dropdown-menu-end" style="background:#2a83e9b0;">
                                     <li><a class="dropdown-item" href="<?php _WEB_HOST;?>/vesperdienmay/auth/profile.php">Thông tin tài khoản</a></li>
                                     <li><a class="dropdown-item" href="<?php _WEB_HOST;?>/vesperdienmay/admin/dashboard.php">Quản lý</a></li>

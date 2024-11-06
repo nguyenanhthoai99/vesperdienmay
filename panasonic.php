@@ -11,12 +11,19 @@ require_once('./includes/session.php');
 <div class="container" style="margin-top: 100px">
     <div class="row main-lsp" style="margin:0px">
         <?php
-        $queryTuLanh = getRaw("SELECT * FROM sanpham WHERE id_th = 5 ORDER BY update_at DESC, create_at DESC");
-        if (!empty($queryTuLanh)) :
-            foreach ($queryTuLanh as $item):
+        $filterAll = filter();
+        $page = !empty($filterAll['page']) ? $filterAll['page'] : 1;
+        $itemPage = 10;
+        $offset = ($page - 1) * $itemPage;
+        $queryPanasonic = getRaw("SELECT * FROM sanpham WHERE id_th = 5 ORDER BY update_at DESC, create_at DESC LIMIT " . $itemPage . " OFFSET " . $offset);
+        $tongPanasonic = getRows("SELECT * FROM sanpham WHERE id_th = 5");
+        $tongPage = ceil($tongPanasonic / $itemPage);
+     
+        if (!empty($queryPanasonic)) :
+            foreach ($queryPanasonic as $item):
         ?>
 
-                <a href="<?php linkSp($item['id_lsp'],_WEB_HOST, $item['ten_sp']);?>" class="col-3 main-item card" title="<?php echo $item['ten_sp']; ?>" style="margin-right: 10px">
+                <a href="<?php linkSp($item['id_lsp'], _WEB_HOST, $item['ten_sp']); ?>" class="col-3 main-item card" title="<?php echo $item['ten_sp']; ?>" style="margin-right: 10px">
                     <?php echo fileImage($item['id_lsp'], _WEB_HOST_TEMPLATES, $item['hinhanh']) ?>
                     <div class="card-body">
                         <p class="card-title ten-item"><?php echo limitString($item['ten_sp']); ?></p>
@@ -30,6 +37,9 @@ require_once('./includes/session.php');
             endforeach;
         endif;
         ?>
+    </div>
+    <div class="text-center">
+        <?php echo page($page, $tongPage) ?>
     </div>
 </div>
 

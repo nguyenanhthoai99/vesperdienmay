@@ -12,7 +12,14 @@ require_once('../includes/session.php');
 <div class="container" style="margin-top: 100px">
     <div class="row main-lsp" style="margin:0px">
         <?php
-        $queryTuDong = getRaw("SELECT * FROM sanpham WHERE id_lsp = 3 ORDER BY update_at DESC, create_at DESC");
+        $filterAll = filter();
+        $page = !empty($filterAll['page']) ? $filterAll['page'] : 1;
+        $itemPage = 10;
+        $offset = ($page - 1) * $itemPage;
+        $queryTuDong = getRaw("SELECT * FROM sanpham WHERE id_lsp = 3 ORDER BY update_at DESC, create_at DESC LIMIT " . $itemPage . " OFFSET " . $offset);
+        $tongTuDong = getRows("SELECT * FROM sanpham WHERE id_lsp = 3");
+        $tongPage = ceil($tongTuDong / $itemPage);
+        
         if (!empty($queryTuDong)) :
             foreach ($queryTuDong as $item):
         ?>

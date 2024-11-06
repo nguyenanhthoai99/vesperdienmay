@@ -202,6 +202,25 @@ function isLogin()
     return $checkLogin;
 }
 
+// Hàm kiểm tra tài khoản admin
+function adminLogin()
+{
+    $checkAdmin = false;
+    if (!empty($_COOKIE['user_login'])) {
+        $_SESSION['user_login'] = $_COOKIE['user_login'];
+        $checkAdmin = true;
+    }
+
+    //kiểm tra có phải session của admin không
+    $checkSession = password_verify("admin", $_SESSION['user_login']);
+    if (!empty($_SESSION['user_login'] == 'admin' || $checkSession)) {
+        $checkAdmin = true;
+    } else {
+        redirect(_WEB_HOST . '/errors/404.php');
+    }
+    return $checkAdmin;
+}
+
 // Hàm hiện thị tiền tệ
 function showCurrency($currency)
 {

@@ -12,7 +12,13 @@ require_once('../includes/session.php');
 <div class="container" style="margin-top: 100px">
     <div class="row main-lsp" style="margin:0px">
         <?php
-        $queryMayNuocNong = getRaw("SELECT * FROM sanpham WHERE id_lsp = 4 ORDER BY update_at DESC, create_at DESC");
+        $filterAll = filter();
+        $page = !empty($filterAll['page']) ? $filterAll['page'] : 1;
+        $itemPage = 10;
+        $offset = ($page - 1) * $itemPage;
+        $queryMayNuocNong = getRaw("SELECT * FROM sanpham WHERE id_lsp = 4 ORDER BY update_at DESC, create_at DESC LIMIT " . $itemPage . " OFFSET " . $offset);
+        $tongMayNuocNong = getRows("SELECT * FROM sanpham WHERE id_lsp = 4");
+        $tongPage = ceil($tongMayNuocNong / $itemPage);
         if (!empty($queryMayNuocNong)) :
             foreach ($queryMayNuocNong as $item):
         ?>
@@ -30,6 +36,9 @@ require_once('../includes/session.php');
             endforeach;
         endif;
         ?>
+    </div>
+    <div class="text-center">
+        <?php echo page($page, $tongPage) ?>
     </div>
 </div>
 

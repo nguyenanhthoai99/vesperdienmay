@@ -146,6 +146,15 @@ body {
     height: 70px;
 }
 
+/* error */
+.main-error {
+    margin-top: 100px;
+    padding-left: 40px;
+    color: red;
+    font-size: 12px;
+}
+
+
 /* content */
 .content {
     margin-top: 70px;

@@ -11,7 +11,8 @@ require_once('../includes/session.php');
 <div class="container" style="margin-top: 100px">
     <div class="row main-lsp" style="margin:0px">
         <?php
-        $page = !empty($_GET['page']) ? $_GET['page'] : 1;
+        $filterAll = filter();
+        $page = !empty($filterAll['page']) ? $filterAll['page'] : 1;
         $itemPage = 10;
         $offset = ($page - 1) * $itemPage;
         $queryMaygiat = getRaw("SELECT * FROM sanpham WHERE id_lsp = 1 ORDER BY update_at DESC, create_at DESC LIMIT " . $itemPage . " OFFSET " . $offset);
@@ -35,11 +36,11 @@ require_once('../includes/session.php');
         endif;
         ?>
     </div>
-    <div>
-        <div class="text-center">
-            <?php echo page($page, $tongPage) ?>
-        </div>
+
+    <div class="text-center">
+        <?php echo page($page, $tongPage) ?>
     </div>
+
 </div>
 
 <?php
