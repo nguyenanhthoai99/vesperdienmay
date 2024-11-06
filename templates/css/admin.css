@@ -1,0 +1,67 @@
+/* header */
+#header {
+    background: #2a83e9;
+}
+
+.hinh-icon {
+    height: 30px;
+    width: 30px;
+    margin-right: 10px;
+}
+
+.img-user {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+/* menu column */
+.menu-column {
+    margin-top: 100px;
+    font-size: large;
+    width: 320px;
+    height: 600px;
+    overflow: auto;
+
+}
+
+.menu-column ul {
+    border: 1px solid #ccc;
+    margin-left: 15px;
+    border-radius: 5px;
+
+}
+
+.menu-column ul li a {
+    color: black;
+    border: 1px solid white;
+    margin: 5px;
+    border-radius: 5px;
+    background: white;
+}
+
+.menu-column ul li a:hover {
+    color: black;
+    border-radius: 5px;
+    background-color: #e9edf08c;
+    border: 1px solid #aab3bbb4;
+
+}
+
+/* error */
+.main-error {
+    margin-top: 100px;
+    padding-left: 40px;
+    color: red;
+    font-size: 12px;
+}
+
+.content {
+    margin-top: 100px;
+}
+
+/* content */
+#piechart_3d {
+    width: 900px;
+    height: 500px;
+}
