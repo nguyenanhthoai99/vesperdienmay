@@ -52,7 +52,6 @@ require_once(_WEB_PATH . '/includes/session.php');
                             <img src="<?php echo _WEB_HOST_TEMPLATES; ?>/images/users/<?php echo $queryUser['hinhanh_user'] ?  $queryUser['hinhanh_user'] : 'default-account.jpg' ?>" class="img-user">
                         </a>
                         <li class="nav-item dropdown">
-
                             <?php if (!empty($checkSession) && $queryUser['email'] == 'admin'): ?>
                                 <ul class="dropdown-menu dropdown-menu-end" style="background:#2a83e9b0;">
                                     <li><a class="dropdown-item" href="<?php _WEB_HOST;?>/vesperdienmay/auth/profile.php">Thông tin tài khoản</a></li>
@@ -75,6 +74,4 @@ require_once(_WEB_PATH . '/includes/session.php');
         </div>
     </nav>
 </div>
-
-
 </html>
