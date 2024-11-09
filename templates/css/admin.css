@@ -1,3 +1,8 @@
+html {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+}
+
 /* header */
 #header {
     background: #2a83e9;
@@ -19,17 +24,13 @@
 .menu-column {
     margin-top: 100px;
     font-size: large;
-    width: 320px;
-    height: 600px;
-    overflow: auto;
-
+    width: 250px;
 }
 
 .menu-column ul {
     border: 1px solid #ccc;
     margin-left: 15px;
     border-radius: 5px;
-
 }
 
 .menu-column ul li a {
@@ -37,7 +38,7 @@
     border: 1px solid white;
     margin: 5px;
     border-radius: 5px;
-    background: white;
+    /* width: 250px; */
 }
 
 .menu-column ul li a:hover {
@@ -56,12 +57,58 @@
     font-size: 12px;
 }
 
+/* content */
 .content {
     margin-top: 100px;
+    margin-left: 45px;
 }
 
-/* content */
 #piechart_3d {
     width: 900px;
     height: 500px;
+}
+
+.dropdown-item {
+    width: 150px;
+}
+
+/* Phân trang */
+.btn-itemPage {
+    margin: 0px 5px;
+    background-color: #1075e9;
+    border: 1px solid #1075e9;
+    border-radius: 20px;
+    width: 40px;
+    height: 40px;
+}
+
+.itemPage-disabled {
+    background-color: silver;
+    border: 1px solid silver;
+    border-radius: 20px;
+    width: 40px;
+    height: 40px;
+
+}
+
+.pageDisabled {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+}
+
+.itemPage {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+}
+
+.pageFirst {
+    text-decoration: none;
+}
+
+.pageChuyen {
+    text-decoration: none;
+    color: rgba(167, 139, 139, 0.603);
+    font-size: 20px;
 }
