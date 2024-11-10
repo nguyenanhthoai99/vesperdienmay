@@ -4,6 +4,7 @@ require_once('../config.php');
 require_once(_WEB_PATH . '/includes/function.php');
 require_once(_WEB_PATH . '/includes/function-admin.php');
 require_once(_WEB_PATH . '/includes/connect.php');
+require_once(_WEB_PATH . '/includes/session.php');
 adminLogin();
 $data = ['pageTitle' => 'Quản lý thông tin tài khoản khách hàng'];
 layouts('header-admin', $data);
@@ -15,12 +16,16 @@ $queryUsers = getRaw("SELECT * FROM users WHERE NOT id_user = 1 ORDER BY update_
 $tongUsers = getRows("SELECT * FROM users WHERE NOT id_user = 1");
 $tongPage = ceil($tongUsers / $itemPage);
 $stt = $offset + 1;
+
+$msg = getFlashData('msg');
+$msgType = getFlashData('msgType');
+$errors = getFlashData('errors');
 ?>
 
 <body>
     <div class="container-fulid">
         <!-- menu dọc -->
-        <div class="row" style="margin: 0px">
+        <div class="row" style="margin: 0px 0px 15px 0px">
             <?php layouts('menu-admin'); ?>
 
             <!-- Nội dung chính của trang -->
@@ -29,8 +34,8 @@ $stt = $offset + 1;
                 <?php
                 !empty($msg) ? getMsg($msg, $msgType) : '';
                 ?>
-
-                <table class="table table-bordered align-middle text-center table-list">
+                <button type="button" class="btn btn-primary btn-plus"><a href="add.php"><i class="fa-solid fa-plus"></i> Thêm mới</a></button>
+                <table class="table table-bordered align-middle text-center table-list mt-3 border-secondary">
                     <thead class="align-middle text-center ">
                         <tr>
                             <th scope="col">STT</th>
@@ -44,25 +49,23 @@ $stt = $offset + 1;
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($queryUsers as $item) :?>
-
+                        <?php foreach ($queryUsers as $item) : ?>
                             <tr>
-                                <th scope="row"><?php echo $stt++;?></th>
+                                <th scope="row"><?php echo $stt++; ?></th>
                                 <td><?php echo $item['hoten_user'] ?></td>
                                 <td><?php echo $item['email'] ?></td>
                                 <td><?php echo $item['sdt'] ?></td>
                                 <td><?php echo $item['dia_chi'] ?></td>
                                 <td><?php echo $item['hinhanh_user'] ?></td>
-                                <td><button type="button" class="btn btn-warning"><a href="edit.php?id=<?php echo $item['id_user'] ?>"><i class="fa-regular fa-pen-to-square" style="color: black;"></i></a></button>
-                                </td>
+                                <td><button type="button" class="btn btn-warning"><a href="edit.php?id=<?php echo $item['id_user'] ?>"><i class="fa-regular fa-pen-to-square" style="color: black;"></i></a></button></td>
                                 <td><button type="button" class="btn btn-danger"><a href="delete.php?id=<?php echo $item['id_user'] ?>"><i class="fa-solid fa-trash-can" style="color: black;"></i></a></button></td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
                 </table>
                 <div class="text-center">
-                <?php echo page($page, $tongPage) ?>
-            </div>
+                    <?php echo page($page, $tongPage) ?>
+                </div>
             </div>
         </div>
     </div>
