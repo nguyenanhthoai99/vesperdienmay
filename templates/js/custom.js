@@ -29,7 +29,6 @@ function tru() {
     }
 }
 
-
 document.getElementById('sp_hinh').onchange = function(evt) {
     var tgt = evt.target || window.event.srcElement,
         files = tgt.files;
