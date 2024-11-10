@@ -57,6 +57,11 @@ html {
     font-size: 12px;
 }
 
+.error {
+    color: red;
+    font-size: 12px;
+}
+
 /* content */
 .content {
     margin-top: 100px;
@@ -111,4 +116,9 @@ html {
     text-decoration: none;
     color: rgba(167, 139, 139, 0.603);
     font-size: 20px;
+}
+
+.btn-plus a {
+    text-decoration: none;
+    color: white;
 }
