@@ -129,7 +129,18 @@ function isNumberFloat($number)
     $checkNumber = filter_var($number, FILTER_VALIDATE_FLOAT);
     return $checkNumber;
 }
-
+// Hàm kiểm tra ảnh
+function isImages($fileName)
+{
+    $chekImage = false;
+    if (isset($_FILES[$fileName]) && $_FILES[$fileName]['error'] == 0) {
+        $tpyeImage = ['image/png', 'image/jpeg', 'image/jpg', 'image/gif', 'image/psd', 'application/pdf'];
+        if (!in_array($_FILES[$fileName]['type'], $tpyeImage)) {
+            $chekImage = true;
+        }
+    }
+    return $chekImage;
+}
 
 // hàm kiểm tra số điện thoại
 function isPhone($phone)
