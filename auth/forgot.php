@@ -3,15 +3,14 @@ session_start();
 require_once('../config.php');
 require_once(_WEB_PATH . '/includes/function.php');
 require_once(_WEB_PATH . '/includes/connect.php');
+require_once(_WEB_PATH . '/includes/database.php');
+require_once(_WEB_PATH . '/includes/session.php');
+if(isLogin()){
+    redirect(_WEB_HOST);
+}
 
 $data = ['pageTitle' => 'Quên mật khẩu'];
 layouts('header', $data);
-require_once(_WEB_PATH . '/includes/database.php');
-require_once(_WEB_PATH . '/includes/session.php');
-
-if (isLogin()) {
-    redirect(_WEB_HOST . '/index.php');
-}
 
 // Kiểm tra lỗi 
 if (isPost()) {

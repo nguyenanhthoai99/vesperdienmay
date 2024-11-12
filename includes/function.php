@@ -220,6 +220,12 @@ function showCurrency($currency)
     return number_format($currency, 0, ',', '.') . '<span class="dong-item">&#8363</span></p>';
 }
 
+// Hàm số lượng
+function remainingQuantity($quantity)
+{
+    return $quantity ? $quantity : '<span style="color:red; font-weight:bold">Hết hàng</span>';
+}
+
 // hàm tính phan trăm
 function percentage($giagoc, $giahientai)
 {

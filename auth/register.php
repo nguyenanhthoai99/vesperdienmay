@@ -2,11 +2,14 @@
 session_start();
 require_once('../config.php');
 require_once(_WEB_PATH . '/includes/function.php');
-$data = ['pageTitle' => 'Đăng ký tài khoản'];
-layouts('header', $data);
 require_once(_WEB_PATH . '/includes/connect.php');
 require_once(_WEB_PATH . '/includes/database.php');
 require_once(_WEB_PATH . '/includes/session.php');
+if(isLogin()){
+    redirect(_WEB_HOST);
+}
+$data = ['pageTitle' => 'Đăng ký tài khoản'];
+layouts('header-login', $data);
 
 
 
@@ -14,12 +17,12 @@ if (isPost()) {
     $filterAll = filter();
     $errors = [];
 
-    // Kiểm tra lỗi của fullname
-    if (empty($filterAll['fullname'])) {
-        $errors['fullname']['required'] = 'Họ và tên bắt buộc phải nhập';
+    // Kiểm tra lỗi của họ và tên
+    if (empty($filterAll['hoten_user'])) {
+        $errors['hoten_user']['required'] = 'Họ và tên bắt buộc phải nhập';
     } else {
-        if (strlen(trim($filterAll['fullname'])) < 5) {
-            $errors['fullname']['min'] = 'Họ và tên ít nhất phải 5 kí tự';
+        if (strlen(trim($filterAll['hoten_user'])) < 5) {
+            $errors['hoten_user']['min'] = 'Họ và tên ít nhất phải 5 kí tự';
         }
     }
 
@@ -28,18 +31,27 @@ if (isPost()) {
         $errors['email']['required'] = 'Email bắt buộc phải nhập';
     } else {
         $email = $filterAll['email'];
-        $sql = "SELECT id_user FROM users WHERE email = '$email'";
+        $sql = "SELECT email FROM users WHERE email = '$email'";
         if (getRows($sql) > 0) {
             $errors['email']['unique'] = 'Email đã tồn tại';
         }
     }
 
-    // kiểm tra phone
-    if (empty($filterAll['phone'])) {
-        $errors['phone']['required'] = 'Số điện thoại bắt buộc phải nhập';
+    //Kiểm tra ảnh
+    if (isImages('hinhanh_user')) {
+        $errors['hinhanh_user']['isImages'] = 'Không phải file ảnh';
     } else {
-        if (!isPhone($filterAll['phone'])) {
-            $errors['phone']['isPhone'] = 'Số điện thoại không đúng';
+        if ($_FILES['hinhanh_user']['size'] > 5242880) {
+            $errors['hinhanh_user']['max'] = 'Không vượt quá 5MB';
+        }
+    }
+
+    // kiểm tra số điện thoại
+    if (empty($filterAll['sdt'])) {
+        $errors['sdt']['required'] = 'Số điện thoại bắt buộc phải nhập';
+    } else {
+        if (!isPhone($filterAll['sdt'])) {
+            $errors['sdt']['isPhone'] = 'Số điện thoại không đúng';
         }
     }
 
@@ -49,11 +61,11 @@ if (isPost()) {
     }
 
     // kiểm tra password
-    if (empty($filterAll['password'])) {
-        $errors['password']['required'] = 'Mật khẩu buộc phải nhập';
+    if (empty($filterAll['mat_khau'])) {
+        $errors['mat_khau']['required'] = 'Mật khẩu buộc phải nhập';
     } else {
-        if (strlen(trim($filterAll['password'])) < 7) {
-            $errors['password']['min'] = 'Mật khẩu ít nhất phải 8 kí tự';
+        if (strlen(trim($filterAll['mat_khau'])) < 7) {
+            $errors['mat_khau']['min'] = 'Mật khẩu ít nhất phải 8 kí tự';
         }
     }
 
@@ -66,16 +78,27 @@ if (isPost()) {
         }
     }
 
-    if (empty($errors)) {
+    if (isset($_FILES['hinhanh_user'])) {
+        $upload_dir = _WEB_PATH_TEMPLATES . "/images/users/";
 
-        $activeToken = sha1(uniqid() . time());
+        if (!$_FILES['hinhanh_user']['error'] > 0) {
+            $anhDaiDien = $_FILES['hinhanh_user']['name'];
+            $tentaptin_anh = date('YdmHis') . '_' . $anhDaiDien;
+            move_uploaded_file($_FILES['hinhanh_user']['tmp_name'], $upload_dir . $tentaptin_anh);
+        } else {
+            $tentaptin_anh = "default-account.jpg";
+        }
+    }
+
+    if (empty($errors)) {
         $dataInsert = [
-            'hoten_user' => $filterAll['fullname'],
+            'hoten_user' => $filterAll['hoten_user'],
             'email' => $filterAll['email'],
-            'sdt' => $filterAll['phone'],
+            'sdt' => $filterAll['sdt'],
+            'hinhanh_user' => $tentaptin_anh,
             'dia_chi' => $filterAll['address'],
             'phan_quyen' => 2,
-            'mat_khau' => password_hash($filterAll['password'], PASSWORD_DEFAULT),
+            'mat_khau' => password_hash($filterAll['mat_khau'], PASSWORD_DEFAULT),
             'create_at' => date('Y-m-d H:i:s')
         ];
         $inserStatus = insert('users', $dataInsert);
@@ -113,8 +136,8 @@ $old = getFlashData('old');
         <form action="" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="">Họ và tên <mn style="color:red">*</mn></label>
-                <input type="text" class="mg-form form-control" name="fullname" placeholder="Họ và tên" value="<?php echo old('fullname', $old); ?>">
-                <?php echo formError('fullname', ' <span class="error">', '</span>', $errors) ?>
+                <input type="text" class="mg-form form-control" name="hoten_user" placeholder="Họ và tên" value="<?php echo old('hoten_user', $old); ?>">
+                <?php echo formError('hoten_user', ' <span class="error">', '</span>', $errors) ?>
             </div>
 
             <div class="form-group">
@@ -125,8 +148,17 @@ $old = getFlashData('old');
 
             <div class="form-group">
                 <label for="">Số điện thoại <mn style="color:red">*</mn></label>
-                <input type="number" class="mg-form form-control" name="phone" placeholder="Số điện thoại" value="<?php echo old('phone', $old); ?>">
-                <?php echo formError('phone', ' <span class="error">', '</span>', $errors) ?>
+                <input type="number" class="mg-form form-control" name="sdt" placeholder="Số điện thoại" value="<?php echo old('sdt', $old); ?>">
+                <?php echo formError('sdt', ' <span class="error">', '</span>', $errors) ?>
+            </div>
+
+            <div class="form-group">
+                <label for="anhDaiDien">Ảnh đại diện</label><br />
+                <img src="<?php echo _WEB_HOST_TEMPLATES ?>/images/users/default-account.jpg" id="anhDemo" name="anhDemo" width="200px" height="200px">
+            </div>
+            <div class="form-group">
+                <input type="file" class="form-control" id="hinhanh_user" name="hinhanh_user" placeholder="Ảnh đại diện" onchange="showHinh()" value="<?php echo old('hinhanh_user', $old); ?>">
+                <?php echo formError('hinhanh_user', ' <span class="error">', '</span>', $errors) ?>
             </div>
 
             <div class="form-group">
@@ -137,7 +169,7 @@ $old = getFlashData('old');
 
             <div class="form-group">
                 <label for="">Mật Khẩu<mn style="color:red">*</mn></label>
-                <input type="password" class="mg-form form-control" name="password" placeholder="Mật khẩu"> <?php echo formError('password', ' <span class="error">', '</span>', $errors) ?>
+                <input type="password" class="mg-form form-control" name="mat_khau" placeholder="Mật khẩu"> <?php echo formError('mat_khau', ' <span class="error">', '</span>', $errors) ?>
             </div>
 
             <div class="form-group">
@@ -152,3 +184,18 @@ $old = getFlashData('old');
 <?php
 layouts('footer-login');
 ?>
+
+<script>
+    document.getElementById('hinhanh_user').onchange = function(evt) {
+        var tgt = evt.target || window.event.srcElement,
+            files = tgt.files;
+
+        if (FileReader && files && files.length) {
+            var fr = new FileReader();
+            fr.onload = function() {
+                document.getElementById("anhDemo").src = fr.result;
+            }
+            fr.readAsDataURL(files[0]);
+        }
+    }
+</script>

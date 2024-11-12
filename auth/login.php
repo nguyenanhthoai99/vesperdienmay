@@ -3,16 +3,17 @@ session_start();
 require_once('../config.php');
 require_once(_WEB_PATH . '/includes/function.php');
 require_once(_WEB_PATH . '/includes/connect.php');
-
+require_once(_WEB_PATH . '/includes/database.php');
+require_once(_WEB_PATH . '/includes/session.php');
+if (isLogin()) {
+    redirect(_WEB_HOST);
+}
 $data = ['pageTitle' => 'Đăng nhập tài khoản'];
 layouts('header', $data);
 
-require_once(_WEB_PATH . '/includes/database.php');
-require_once(_WEB_PATH . '/includes/session.php');
 
-if (isLogin()) {
-    redirect(_WEB_HOST . '/index.php');
-}
+
+
 
 if (isPost()) {
     $filterAll = filter();
@@ -44,12 +45,12 @@ if (isPost()) {
                         setSession('tokenLogin', $tokenLogin);
                         $emailUser  =  password_hash($email, PASSWORD_DEFAULT);
                         setcookie('user_login', $emailUser, time() + (60 * 60 * 24 * 30 * 12), '/', '', 0);
-                        redirect(_WEB_HOST . '/index.php');
+                        redirect(_WEB_HOST);
                     } else {
                         //lưu token vào session
                         setSession('user_login', $email);
                         setSession('tokenLogin', $tokenLogin);
-                        redirect(_WEB_HOST . '/index.php');
+                        redirect(_WEB_HOST);
                     }
                 } else {
                     setFlashData('msg', 'Hệ thống đang lỗi vui lòng thử lại sau!');

@@ -74,7 +74,7 @@ $giaLon = $query['giahientai_sp'] + 5000000;
                                     </td>
                                 </div>
                                 <div class="col-9">
-                                    <td><?php echo $query['chatlieulong_mm'] ?></td>
+                                    <td><?php echo $query['chatlieulong_mg'] ?></td>
                                 </div>
                             </tr>
                             <tr>

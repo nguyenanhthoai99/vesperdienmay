@@ -104,5 +104,3 @@ function getRows($sql)
         return $ketqua->rowCount();
     }
 }
-
-//
