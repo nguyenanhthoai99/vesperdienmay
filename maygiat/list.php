@@ -55,8 +55,8 @@ $errors = getFlashData('errors');
                             <tr>
                                 <th scope="row"><?php echo $stt++; ?></th>
                                 <td title="<?php echo $item['ten_sp'] ?>"><?php echo limitString($item['ten_sp']); ?></td>
-                                <td style="padding-top:25px"><?php echo showCurrency($item['giahientai_sp']) ?></td>
-                                <td style="padding-top:25px"><?php echo !empty($item['giagoc_sp']) ? '<p class="card-text giacu-item">' . showCurrency($item['giagoc_sp']) . '</p>' : null ?></td>
+                                <td style="padding-top:25px"><?php echo !empty($item['giagoc_sp']) ? '<p class="card-text giacu-item">' . showCurrency($item['giagoc_sp']) . '</p>' : showCurrency($item['giahientai_sp']) ?></td>
+                                <td style="padding-top:25px"><?php echo !empty($item['giagoc_sp']) ? '<p class="card-text giacu-item">' . showCurrency($item['giahientai_sp']) . '</p>' : null ?></td>
                                 <td><?php echo $item['ten_th']; ?></td>
                                 <td><?php echo remainingQuantity($item['so_luong']) ?></td>
                                 <td><img src="<?php echo _WEB_HOST_TEMPLATES ?>/images/maygiat/<?php echo $item['hinhanh'] ?>" id="anhDemo" name="anhDemo" width="150px" height="150px" class="rounded mx-auto d-block"></td>

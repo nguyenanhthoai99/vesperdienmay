@@ -11,102 +11,144 @@ layouts('header-admin', $data);
 
 $queryNSX = getRaw("SELECT * FROM nhasanxuat");
 $queryTh = getRaw("SELECT * FROM thuonghieu");
+$queryTthai = getRaw("SELECT * FROM trangthai WHERE id_tthai = 1 || id_tthai = 2");
+$queryKm = getRaw("SELECT * FROM khuyenmai");
 
 if (isPost()) {
     $filterAll = filter();
     $errors = [];
 
     // Kiểm tra lỗi của họ và tên
-    if (empty($filterAll['hoten_user'])) {
-        $errors['hoten_user']['required'] = 'Họ và tên bắt buộc phải nhập';
+    if (empty($filterAll['ten_sp'])) {
+        $errors['ten_sp']['required'] = 'Tên máy giặt bắt buộc phải nhập';
     } else {
-        if (strlen(trim($filterAll['hoten_user'])) < 5) {
-            $errors['hoten_user']['min'] = 'Họ và tên ít nhất phải 5 kí tự';
+        if (strlen(trim($filterAll['ten_sp'])) < 5) {
+            $errors['ten_sp']['min'] = 'Tên máy giặt ít nhất phải 5 kí tự';
+        }
+        if (strlen(trim($filterAll['ten_sp'])) > 100) {
+            $errors['ten_sp']['max'] = 'Tên máy giặt không được quá 100 kí tự';
         }
     }
 
-    // kiểm tra email
-    if (empty($filterAll['email'])) {
-        $errors['email']['required'] = 'Email bắt buộc phải nhập';
+    // kiểm tra giá
+    if (empty($filterAll['giagoc_sp'])) {
+        $errors['giagoc_sp']['required'] = 'Giá máy giặt bắt buộc phải nhập';
+    }
+
+    // kiểm tra khối lượng
+    if (empty($filterAll['khoiluong_mg'])) {
+        $errors['khoiluong_mg']['required'] = 'Khối lượng máy giặt bắt buộc phải nhập';
+    }
+
+    // kiểm tra tốc độ vắt
+    if (empty($filterAll['tocdoquay_mg'])) {
+        $errors['tocdoquay_mg']['required'] = 'Tốc độ vắt máy giặt bắt buộc phải nhập';
+    }
+
+    // kiểm tra chất lượng lồng máy giặt
+    if (empty($filterAll['chatluonglong_mg'])) {
+        $errors['chatluonglong_mg']['required'] = 'Chất lượng lồng máy giặt bắt buộc phải nhập';
     } else {
-        $email = $filterAll['email'];
-        $sql = "SELECT email FROM users WHERE email = '$email'";
-        if (getRows($sql) > 0) {
-            $errors['email']['unique'] = 'Email đã tồn tại';
+        if (strlen(trim($filterAll['chatluonglong_mg'])) < 5) {
+            $errors['chatluonglong_mg']['min'] = 'Chất lượng lồng máy giặt ít nhất phải 5 kí tự';
         }
+    }
+
+    // kiểm tra chất lượng vỏ máy giặt
+    if (empty($filterAll['chatlieuvo_mg'])) {
+        $errors['chatlieuvo_mg']['required'] = 'Chất lượng vỏ máy giặt bắt buộc phải nhập';
+    } else {
+        if (strlen(trim($filterAll['chatlieuvo_mg'])) < 5) {
+            $errors['chatlieuvo_mg']['min'] = 'Chất lượng vỏ  máy giặt ít nhất phải 5 kí tự';
+        }
+    }
+
+    // kiểm tra năm sản xuất của máy giặt
+    if (empty($filterAll['nam'])) {
+        $errors['nam']['required'] = 'Năm sản xuất của máy giặt bắt buộc phải nhập';
+    }
+
+    // kiểm tra bảo hành của máy giặt
+    if (empty($filterAll['baohanh'])) {
+        $errors['baohanh']['required'] = 'Thời gian bảo hành của động cơ máy giặt bắt buộc phải nhập';
+    }
+
+    // kiểm tra số lượng của máy giặt
+    if (empty($filterAll['so_luong'])) {
+        $errors['so_luong']['required'] = 'Số lượng máy giặt bắt buộc phải nhập';
+    }
+
+    // kiểm tra thương hiệu máy giặt
+    if (empty($filterAll['id_th'])) {
+        $errors['id_th']['required'] = 'Thương hiệu máy giặt chưa chọn';
+    }
+
+    // kiểm tra kiểu máy giặt
+    if (empty($filterAll['kieu_mg'])) {
+        $errors['kieu_mg']['required'] = 'Loại máy giặt chưa chọn';
+    }
+
+    // kiểm tra lồng máy giặt
+    if (empty($filterAll['long_mg'])) {
+        $errors['long_mg']['required'] = 'Lồng máy giặt chưa chọn';
+    }
+
+    // kiểm tra nhà sản xuất máy giặt
+    if (empty($filterAll['id_nsx'])) {
+        $errors['id_nsx']['required'] = 'Nhà sản xuất máy giặt chưa chọn';
     }
 
     //Kiểm tra ảnh
-    if (isImages('hinhanh_user')) {
-        $errors['hinhanh_user']['isImages'] = 'Không phải file ảnh';
+    if (isImages('hinhanh')) {
+        $errors['hinhanh']['isImages'] = 'Không phải file ảnh';
     } else {
-        if ($_FILES['hinhanh_user']['size'] > 5242880) {
-            $errors['hinhanh_user']['max'] = 'Không vượt quá 5MB';
+        if ($_FILES['hinhanh']['size'] > 5242880) {
+            $errors['hinhanh']['max'] = 'Không vượt quá 5MB';
         }
     }
 
-    // kiểm tra số điện thoại
-    if (empty($filterAll['sdt'])) {
-        $errors['sdt']['required'] = 'Số điện thoại bắt buộc phải nhập';
-    } else {
-        if (!isPhone($filterAll['sdt'])) {
-            $errors['sdt']['isPhone'] = 'Số điện thoại không đúng';
-        }
-    }
 
-    // Kiểm tra địa chỉ
-    if (empty($filterAll['address'])) {
-        $errors['address']['required'] = 'Địa chỉ bắt buộc phải nhập';
-    }
-
-    // kiểm tra password
-    if (empty($filterAll['mat_khau'])) {
-        $errors['mat_khau']['required'] = 'Mật khẩu buộc phải nhập';
-    } else {
-        if (strlen(trim($filterAll['mat_khau'])) < 7) {
-            $errors['mat_khau']['min'] = 'Mật khẩu ít nhất phải 8 kí tự';
-        }
-    }
-
-    // Kiểm tra password_confirm
-    if (empty($filterAll['password_confirm'])) {
-        $errors['password_confirm']['required'] = 'Mật khẩu nhập lại buộc phải nhập';
-    } else {
-        if (($filterAll['password_confirm']) != ($filterAll['password'])) {
-            $errors['password_confirm']['match'] = 'Mật khẩu nhập lại không đúng';
-        }
-    }
-
-    if (isset($_FILES['hinhanh_user'])) {
+    if (isset($_FILES['hinhanh'])) {
         $upload_dir = _WEB_PATH_TEMPLATES . "/images/maygiat/";
-
-        if (!$_FILES['hinhanh_user']['error'] > 0) {
-            $anhDaiDien = $_FILES['hinhanh_user']['name'];
+        if (!$_FILES['hinhanh']['error'] > 0) {
+            $anhDaiDien = $_FILES['hinhanh']['name'];
             $tentaptin_anh = date('YdmHis') . '_' . $anhDaiDien;
-            move_uploaded_file($_FILES['hinhanh_user']['tmp_name'], $upload_dir . $tentaptin_anh);
+            move_uploaded_file($_FILES['hinhanh']['tmp_name'], $upload_dir . $tentaptin_anh);
         } else {
             $tentaptin_anh = "default-account.jpg";
         }
     }
 
+    if (!empty($filterAll['giahientai_sp'])) {
+        $dataInsertSP = ['giahientai_sp' => $filterAll['giahientai']];
+    }
+
+    if (!empty($filterAll['id_tthai'])) {
+        $dataInsertSP = ['id_tthai' => $filterAll['id_tthai']];
+    }
+
+    if (!empty($filterAll['id_km'])) {
+        $dataInsertSP = ['id_km' => $filterAll['id_km']];
+    }
+
     if (empty($errors)) {
-        $dataInsert = [
-            'hoten_user' => $filterAll['hoten_user'],
-            'email' => $filterAll['email'],
-            'sdt' => $filterAll['sdt'],
-            'hinhanh_user' => $tentaptin_anh,
-            'dia_chi' => $filterAll['address'],
-            'phan_quyen' => 2,
-            'mat_khau' => password_hash($filterAll['mat_khau'], PASSWORD_DEFAULT),
+        $dataInsertSP = [
+            'ten_sp' => $filterAll['ten_sp'],
+            'giagoc_sp' => $filterAll['giagoc_sp'],
+            'id_lsp' => 1,
+            'hinhanh' => $tentaptin_anh,
+            'id_th' => $filterAll['id_th'],
+            'so_luong' => $filterAll['so_luong'],
             'create_at' => date('Y-m-d H:i:s')
         ];
-        $inserStatus = insert('users', $dataInsert);
-        if ($inserStatus) {
-            setFlashData('msg', 'Thêm tài khoản khách hàng thành công!');
+
+        $inserStatus = insert('sanpham', $dataInsertSP);
+        if ($dataInsertSP) {
+            setFlashData('msg', 'Thêm mới máy giặt thành công!');
             setFlashData('msgType', 'success');
-            redirect(_WEB_HOST . '/users/list.php');
+            redirect(_WEB_HOST . '/maygiat/list.php');
         } else {
-            setFlashData('msg', 'Thêm mới không thành công!');
+            setFlashData('msg', 'Thêm mới máy giặt không thành công!');
             setFlashData('msgType', 'danger');
         }
     } else {
@@ -155,21 +197,21 @@ $old = getFlashData('old');
                             </div>
 
                             <div class="form-group">
-                                <label for="id_th">Thương hiệu</label>
+                                <label for="id_th">Thương hiệu <mn style="color:red">*</mn></label>
                                 <select class="form-control" id="id_th" name="id_th">
-                                    <option selected>Chưa lựa chọn</option>
+                                    <option value="" selected>Chưa lựa chọn</option>
                                     <?php foreach ($queryTh  as $item) : ?>
                                         <option value="<?= $item['id_th'] ?>" <?php echo (old('id_th', $old) == $item['id_th']) ? ' selected' : false; ?>><?= $item['ten_th'] ?></option>
                                         <?php echo (old('id_th', $old) == $item['id_th']) ?>
                                     <?php endforeach; ?>
                                 </select>
-                                <?php echo formError('id_nsx', ' <span class="error">', '</span>', $errors) ?>
+                                <?php echo formError('id_th', ' <span class="error">', '</span>', $errors) ?>
                             </div>
 
                             <div class="form-group">
                                 <label for="">Loại máy giặt <mn style="color:red">*</mn></label>
                                 <select class="form-select" aria-label="Default select example" name="kieu_mg">
-                                    <option selected>Chưa lựa chọn</option>
+                                    <option value="" selected>Chưa lựa chọn</option>
                                     <option value="1" <?php echo (old('kieu_mg', $old) == 1) ? ' selected' : false; ?>>
                                         Cửa đứng</option>
                                     <option value="2" <?php echo (old('kieu_mg', $old) == 2) ? ' selected' : false; ?>>Cửa trước</option>
@@ -180,7 +222,7 @@ $old = getFlashData('old');
                             <div class="form-group">
                                 <label for="">Lồng máy giặt <mn style="color:red">*</mn></label>
                                 <select class="form-select" aria-label="Default select example" name="long_mg">
-                                    <option selected>Chưa lựa chọn</option>
+                                    <option value="" selected>Chưa lựa chọn</option>
                                     <option value="1" <?php echo (old('long_mg', $old) == 1) ? ' selected' : false; ?>>
                                         Lồng đứng</option>
                                     <option value="2" <?php echo (old('long_mg', $old) == 2) ? ' selected' : false; ?>>Lồng ngang</option>
@@ -195,19 +237,19 @@ $old = getFlashData('old');
                             </div>
 
                             <div class="form-group">
-                                <label for="">Giá giảm</label>
+                                <label for="">Giá sau giảm</label>
                                 <input type="number" class="mg-form form-control" name="giahientai_sp" placeholder="Giá giảm" value="<?php echo old('giahientai_sp', $old); ?>">
                                 <?php echo formError('giahientai_sp', ' <span class="error">', '</span>', $errors) ?>
                             </div>
-                        </div>
 
-                        <div class="col-6">
                             <div class="form-group">
                                 <label for="">Khối lượng giặt (Kg) <mn style="color:red">*</mn></label>
                                 <input type="number" class="mg-form form-control" name="khoiluong_mg" placeholder="Khối lượng giặt (kg)" value="<?php echo old('khoiluong_mg', $old); ?>">
                                 <?php echo formError('khoiluong_mg', ' <span class="error">', '</span>', $errors) ?>
                             </div>
+                        </div>
 
+                        <div class="col-6">
                             <div class="form-group">
                                 <label for="">Tốc độ quay vắt tốc đa (vòng/phút) <mn style="color:red">*</mn></label>
                                 <input type="number" class="mg-form form-control" name="tocdoquay_mg" placeholder="Tốc độ quay vắt tốc đa (vòng/phút)" value="<?php echo old('tocdoquay_mg', $old); ?>">
@@ -235,7 +277,7 @@ $old = getFlashData('old');
                             <div class="form-group">
                                 <label for="id_nsx">Nhà sản xuất</label>
                                 <select class="form-control" id="id_nsx" name="id_nsx">
-                                    <option selected>Chưa lựa chọn</option>
+                                    <option value="" selected>Chưa lựa chọn</option>
                                     <?php foreach ($queryNSX  as $item) : ?>
                                         <option value="<?= $item['id_nsx'] ?>" <?php echo (old('id_nsx', $old) == $item['id_nsx']) ? ' selected' : false; ?>><?= $item['ten_nsx'] ?></option>
                                         <?php echo (old('id_nsx', $old) == $item['id_nsx']) ?>
@@ -254,6 +296,36 @@ $old = getFlashData('old');
                                 <label for="">Thời gian bản hàng động cơ <mn style="color:red">*</mn></label>
                                 <input type="number" class="mg-form form-control" name="baohanh" placeholder="Thời gian bản hàng động cơ" value="<?php echo old('baohanh', $old); ?>">
                                 <?php echo formError('baohanh', ' <span class="error">', '</span>', $errors) ?>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="">Số lượng máy giặt <mn style="color:red">*</mn></label>
+                                <input type="number" class="mg-form form-control" name="so_luong" placeholder="Số lượng máy giặt" value="<?php echo old('so_luong', $old); ?>">
+                                <?php echo formError('so_luong', ' <span class="error">', '</span>', $errors) ?>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="id_km">Khuyến mãi <mn style="color:red">*</mn></label>
+                                <select class="form-control" id="id_km" name="id_km">
+                                    <option value="" selected>Chưa lựa chọn</option>
+                                    <?php foreach ($queryKm as $item) : ?>
+                                        <option value="<?= $item['id_km'] ?>" <?php echo (old('id_km', $old) == $item['id_km']) ? ' selected' : false; ?>><?= $item['ten_km'] ?></option>
+                                        <?php echo (old('id_km', $old) == $item['id_km']) ?>
+                                    <?php endforeach; ?>
+                                </select>
+                                <?php echo formError('id_km', ' <span class="error">', '</span>', $errors) ?>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="id_tthai">Trạng thái</label>
+                                <select class="form-control" id="id_th" name="id_tthai">
+                                    <option value="" selected>Chưa lựa chọn</option>
+                                    <?php foreach ($queryTthai  as $item) : ?>
+                                        <option value="<?= $item['id_tthai'] ?>" <?php echo (old('id_tthai', $old) == $item['id_tthai']) ? ' selected' : false; ?>><?= $item['ten_tthai'] ?></option>
+                                        <?php echo (old('id_tthai', $old) == $item['ten_tthai']) ?>
+                                    <?php endforeach; ?>
+                                </select>
+                                <?php echo formError('id_tthai', ' <span class="error">', '</span>', $errors) ?>
                             </div>
                         </div>
                         <button type="submit" class="btn-login btn btn-primary btn-block" style="margin:15px 5px; width:45%">Thêm mới</button>
