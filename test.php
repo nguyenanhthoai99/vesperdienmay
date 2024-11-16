@@ -1,41 +1,23 @@
-<?php
-if ($page > 3) {
-    $first_page = 1;
-?>
-    <a href="?page=<?= $first_page ?>" class="pageChuyen">
-        <i class="fa-solid fa-angles-left"></i>
-    </a>
-<?php
-}
-if ($page > 1) {
-    $prePage = $page - 1;
-?>
-    <a href="?page=<?= $prePage ?>" class="pageChuyen">
-        <i class="fa-solid fa-chevron-left"></i>
-    </a>
-<?php } ?>
-<?php for ($num = 1; $num <= $tongPage; $num++) {
-    if ($num != $page) { ?>
-        <?php if ($num > $page - 3 && $num < $page + 3) { ?>
-            <button class="btn-itemPage"><a href="?page=<?php echo $num ?>" class="itemPage"><?php echo $num ?></a></button>
-        <?php } ?>
-    <?php } else { ?>
-        <button class="itemPage-disabled"><a class="pageDisabled" style="cursor: not-allowed;"><?php echo $num ?></a></button>
-    <?php } ?>
-<?php } ?>
+<input type="text" id="currencyInput" placeholder="Nhập số tiền">
+<script>
+    document.getElementById("currencyInput").addEventListener("input", function(event) {
+    let inputValue = event.target.value;
 
-<?php
-if ($page < $tongPage - 1) {
-    $nextPage = $page + 1; ?>
-    <a href="?page=<?= $nextPage ?>" class="pageChuyen">
-        <i class="fa-solid fa-chevron-right"></i>
-    </a>
-<?php
-}
-if ($page < $tongPage - 3) {
-    $endPage = $tongPage;
-?>
-    <a href="?page=<?= $endPage ?>" class="pageChuyen"><i class="fa-solid fa-angles-right" ></i></a>
-<?php
-}
-?>
+    // Xóa tất cả các ký tự không phải số và dấu chấm (chỉ giữ lại số và dấu chấm)
+    inputValue = inputValue.replace(/[^0-9.]/g, '');
+
+    // Nếu có dấu chấm, giữ lại chỉ một dấu chấm
+    let parts = inputValue.split('.');
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ","); // Chèn dấu phân cách hàng nghìn
+
+    if (parts[1]) {
+        parts[1] = parts[1].substring(0, 2); // Giới hạn chỉ 2 chữ số sau dấu thập phân
+    }
+
+    // Đảm bảo rằng chỉ có một dấu phân cách thập phân
+    event.target.value = parts.join('.');
+
+    // Thêm ký hiệu tiền tệ sau khi xử lý
+    event.target.value = event.target.value + ' ₫';
+});
+</script>

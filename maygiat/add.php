@@ -46,11 +46,11 @@ if (isPost()) {
     }
 
     // kiểm tra chất lượng lồng máy giặt
-    if (empty($filterAll['chatluonglong_mg'])) {
-        $errors['chatluonglong_mg']['required'] = 'Chất lượng lồng máy giặt bắt buộc phải nhập';
+    if (empty($filterAll['chatlieulong_mg'])) {
+        $errors['chatlieulong_mg']['required'] = 'Chất lượng lồng máy giặt bắt buộc phải nhập';
     } else {
-        if (strlen(trim($filterAll['chatluonglong_mg'])) < 5) {
-            $errors['chatluonglong_mg']['min'] = 'Chất lượng lồng máy giặt ít nhất phải 5 kí tự';
+        if (strlen(trim($filterAll['chatlieulong_mg'])) < 5) {
+            $errors['chatlieulong_mg']['min'] = 'Chất lượng lồng máy giặt ít nhất phải 5 kí tự';
         }
     }
 
@@ -119,34 +119,73 @@ if (isPost()) {
         }
     }
 
-    if (!empty($filterAll['giahientai_sp'])) {
-        $dataInsertSP = ['giahientai_sp' => $filterAll['giahientai']];
-    }
-
-    if (!empty($filterAll['id_tthai'])) {
-        $dataInsertSP = ['id_tthai' => $filterAll['id_tthai']];
-    }
-
-    if (!empty($filterAll['id_km'])) {
-        $dataInsertSP = ['id_km' => $filterAll['id_km']];
-    }
-
     if (empty($errors)) {
+        $ten_sp =  $filterAll['ten_sp'];
+        $datetime = date('Y-m-d H:i:s');
+
+
         $dataInsertSP = [
-            'ten_sp' => $filterAll['ten_sp'],
-            'giagoc_sp' => $filterAll['giagoc_sp'],
+            'ten_sp' =>  $ten_sp,
             'id_lsp' => 1,
             'hinhanh' => $tentaptin_anh,
             'id_th' => $filterAll['id_th'],
             'so_luong' => $filterAll['so_luong'],
-            'create_at' => date('Y-m-d H:i:s')
+            'create_at' => $datetime,
         ];
+        if (!empty($filterAll['giagoc_sp'])) {
+            $dataInsertSP['giahientai_sp'] = $filterAll['giagoc_sp'];
+        }
 
-        $inserStatus = insert('sanpham', $dataInsertSP);
-        if ($dataInsertSP) {
-            setFlashData('msg', 'Thêm mới máy giặt thành công!');
-            setFlashData('msgType', 'success');
-            redirect(_WEB_HOST . '/maygiat/list.php');
+        if (!empty($filterAll['giahientai_sp'])) {
+            $dataInsertSP['giahientai_sp'] = $filterAll['giahientai_sp'];
+            $dataInsertSP['giagoc_sp'] = $filterAll['giagoc_sp'];
+        }
+
+        if (!empty($filterAll['id_tthai'])) {
+            $dataInsertSP['id_tthai'] = $filterAll['id_tthai'];
+        }
+
+        if (!empty($filterAll['id_km'])) {
+            $dataInsertSP['id_km'] = $filterAll['id_km'];
+        }
+
+        $inserStatusSP = insert('sanpham', $dataInsertSP);
+        if ($inserStatusSP) {
+            $querySP = oneRaw("SELECT * FROM sanpham WHERE ten_sp = '$ten_sp' AND create_at='$datetime'");
+            $id_sp = $querySP['id_sp'];
+            if (!empty($filterAll['kieu_mg'] == 2)) {
+                $filterAll['kieu_mg'] = 'Cửa trước';
+            } else {
+                $filterAll['kieu_mg'] = 'Cửa đứng';
+            }
+
+            if (!empty($filterAll['long_mg'] == 2)) {
+                $filterAll['long_mg'] = 'Lồng đứng';
+            } else {
+                $filterAll['long_mg'] = 'Lồng ngang';
+            }
+
+            $dataInsertMayGiat = [
+                'id_sp' => $id_sp,
+                'ten_mg' => $ten_sp,
+                'kieu_mg' => $filterAll['kieu_mg'],
+                'long_mg' => $filterAll['long_mg'],
+                'khoiluong_mg' => $filterAll['khoiluong_mg'],
+                'tocdoquay_mg' => $filterAll['tocdoquay_mg'],
+                'chatlieulong_mg' => $filterAll['chatlieulong_mg'],
+                'chatlieuvo_mg' => $filterAll['chatlieuvo_mg'],
+                'chatlieunap_mg' => $filterAll['chatlieunap_mg'],
+                'id_nsx' => $filterAll['id_nsx'],
+                'nam' => $filterAll['so_luong'],
+                'baohanh' => $filterAll['so_luong'],
+                'create_at' => date('Y-m-d H:i:s')
+            ];
+            $inserStatusMaygiat = insert('maygiat', $dataInsertMayGiat);
+            if (!empty($inserStatusMaygiat)) {
+                setFlashData('msg', 'Thêm mới máy giặt thành công!');
+                setFlashData('msgType', 'success');
+                redirect(_WEB_HOST . '/maygiat/list.php');
+            }
         } else {
             setFlashData('msg', 'Thêm mới máy giặt không thành công!');
             setFlashData('msgType', 'danger');
@@ -231,16 +270,17 @@ $old = getFlashData('old');
                             </div>
 
                             <div class="form-group">
-                                <label for="">Giá gốc <mn style="color:red">*</mn></label>
-                                <input type="number" class="mg-form form-control" name="giagoc_sp" placeholder="Giá gốc" value="<?php echo old('giagoc_sp', $old); ?>">
+                                <label id="currencyInput" for="">Giá gốc <mn style="color:red">*</mn></label>
+                                <input type="number" class="mg-form form-control" name="giagoc_sp" placeholder="Nhập số tiền giá gốc" value="<?php echo old('giagoc_sp', $old); ?>">
                                 <?php echo formError('giagoc_sp', ' <span class="error">', '</span>', $errors) ?>
                             </div>
 
                             <div class="form-group">
                                 <label for="">Giá sau giảm</label>
-                                <input type="number" class="mg-form form-control" name="giahientai_sp" placeholder="Giá giảm" value="<?php echo old('giahientai_sp', $old); ?>">
+                                <input type="number" class="mg-form form-control" name="giahientai_sp" placeholder="Nhập số tiền giá  sau khi giảm" value="<?php echo old('giahientai_sp', $old); ?>">
                                 <?php echo formError('giahientai_sp', ' <span class="error">', '</span>', $errors) ?>
                             </div>
+
 
                             <div class="form-group">
                                 <label for="">Khối lượng giặt (Kg) <mn style="color:red">*</mn></label>
@@ -258,8 +298,8 @@ $old = getFlashData('old');
 
                             <div class="form-group">
                                 <label for="">Chất lượng lồng giặt <mn style="color:red">*</mn></label>
-                                <input type="text" class="mg-form form-control" name="chatluonglong_mg" placeholder="Chất lượng lồng giặt" value="<?php echo old('chatluonglong_mg', $old); ?>">
-                                <?php echo formError('chatluonglong_mg', ' <span class="error">', '</span>', $errors) ?>
+                                <input type="text" class="mg-form form-control" name="chatlieulong_mg" placeholder="Chất liệu lồng giặt" value="<?php echo old('chatlieulong_mg', $old); ?>">
+                                <?php echo formError('chatlieulong_mg', ' <span class="error">', '</span>', $errors) ?>
                             </div>
 
                             <div class="form-group">
@@ -305,7 +345,7 @@ $old = getFlashData('old');
                             </div>
 
                             <div class="form-group">
-                                <label for="id_km">Khuyến mãi <mn style="color:red">*</mn></label>
+                                <label for="id_km">Khuyến mãi</mn></label>
                                 <select class="form-control" id="id_km" name="id_km">
                                     <option value="" selected>Chưa lựa chọn</option>
                                     <?php foreach ($queryKm as $item) : ?>
@@ -336,7 +376,6 @@ $old = getFlashData('old');
         </div>
     </div>
 </div>
-
 <?php
 layouts('footer-admin');
 ?>
