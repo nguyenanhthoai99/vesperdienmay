@@ -23,9 +23,9 @@ require_once(_WEB_PATH . '/includes/session.php');
 </head>
 
 <div class="container-fluid">
-    <nav id="header" class="navbar navbar-expand-lg fixed-top">
+    <nav id="header" class="navbar navbar-expand-lg ">
         <div class="container-fluid">
-            <a class="navbar-brand ms-5" href="dashboard.php"><img src="<?php echo _WEB_HOST_TEMPLATES ?>/images/icon/icon.jpg" class="hinh-icon" />Vesper Nguyễn</a>
+            <a class="navbar-brand ms-5" href=""><img src="<?php echo _WEB_HOST_TEMPLATES ?>/images/icon/icon.jpg" class="hinh-icon" />Vesper Nguyễn</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>

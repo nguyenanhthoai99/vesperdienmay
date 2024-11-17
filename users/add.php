@@ -12,8 +12,8 @@ if (isPost()) {
     $filterAll = filter();
     $errors = [];
 
-     // Kiểm tra lỗi của họ và tên
-     if (empty($filterAll['hoten_user'])) {
+    // Kiểm tra lỗi của họ và tên
+    if (empty($filterAll['hoten_user'])) {
         $errors['hoten_user']['required'] = 'Họ và tên bắt buộc phải nhập';
     } else {
         if (strlen(trim($filterAll['hoten_user'])) < 5) {
@@ -68,7 +68,7 @@ if (isPost()) {
     if (empty($filterAll['password_confirm'])) {
         $errors['password_confirm']['required'] = 'Mật khẩu nhập lại buộc phải nhập';
     } else {
-        if (($filterAll['password_confirm']) != ($filterAll['password'])) {
+        if (($filterAll['password_confirm']) != ($filterAll['mat_khau'])) {
             $errors['password_confirm']['match'] = 'Mật khẩu nhập lại không đúng';
         }
     }
@@ -84,7 +84,7 @@ if (isPost()) {
             $tentaptin_anh = "default-account.jpg";
         }
     }
-    
+
     if (empty($errors)) {
         $dataInsert = [
             'hoten_user' => $filterAll['hoten_user'],
@@ -176,7 +176,7 @@ $old = getFlashData('old');
                         <input type="password" class="mg-form form-control" name="password_confirm" placeholder="Nhập lại mật khẩu"> <?php echo formError('password_confirm', ' <span class="error">', '</span>', $errors) ?>
                     </div>
                     <button type="submit" class="btn-login btn btn-primary btn-block" style="margin:15px 0px; width:30%">Thêm mới</button>
-                    <button type="submit" class="btn-login btn btn-secondary btn-block" style="margin:15px 0px; width:30%"><a href="list.php" style="text-decoration: none; color:white">Quay về</a></button>
+                    <a href="<?php echo _WEB_HOST . '/users/list.php' ?>" class="btn btn-success btn-block" style="width:30%;">Quay lại</a>
                 </form>
             </div>
         </div>
@@ -188,7 +188,7 @@ layouts('footer-admin');
 ?>
 
 <script>
-    document.getElementById('anhDaiDien').onchange = function(evt) {
+    document.getElementById('hinhanh_user').onchange = function(evt) {
         var tgt = evt.target || window.event.srcElement,
             files = tgt.files;
 

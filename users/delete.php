@@ -11,18 +11,28 @@ adminLogin();
 $filterAll = filter();
 if (!empty($filterAll['id'])) {
     $userId = $filterAll['id'];
-    $userDetail = getRows("SELECT * FROM users WHERE id_user = '$userId'");
-    if ($userDetail > 0) {
+    $userDetail = oneRaw("SELECT * FROM users WHERE id_user = '$userId'");
+    $upload_dir = _WEB_PATH_TEMPLATES . "/images/users/";
+    if ($userDetail['hinhanh_user'] != 'default-account.jpg') {
+        $old_file_sp_hinh =  $upload_dir . $userDetail['hinhanh_user'];
+    } else {
+        $old_file_sp_hinh = null;
+    }
+
+    if (!empty($userDetail)) {
         // Thực hiện xóa id ở bảng tokenLogin trước
         $deleteLogin = delete('tokenLogin', "id_user = $userId");
-        if($deleteLogin){
-            $deleteUser = delete('users', "id_user = $userId");
-            if($deleteUser){
-                setFlashData('msg', 'Xóa khách hàng thành công!');
-                setFlashData('msgType', 'success');
-            }
+        $deleteDonHang = delete('donhang', "id_user = $userId");
+
+        if (!empty(file_exists($old_file_sp_hinh))) {
+            unlink($old_file_sp_hinh);
         }
-    } else{
+        $deleteUser = delete('users', "id_user = $userId");
+        if ($deleteUser) {
+            setFlashData('msg', 'Xóa khách hàng thành công!');
+            setFlashData('msgType', 'success');
+        }
+    } else {
         setFlashData('msg', 'Người dùng không tồn tại!');
         setFlashData('msgType', 'danger');
     }

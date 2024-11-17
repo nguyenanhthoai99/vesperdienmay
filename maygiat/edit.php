@@ -15,6 +15,16 @@ if (!empty($filterAll['id'])) {
     $sanPhamId = $filterAll['id'];
     $userDetail = oneRaw("SELECT * FROM sanpham as sp INNER JOIN maygiat as mg ON mg.id_sp = sp.id_sp WHERE sp.id_sp = '$sanPhamId'");
     if (!empty($userDetail)) {
+        if (!empty($userDetail['kieu_mg']) == 'Cửa đứng') {
+            $userDetail['kieu_mg'] = 1;
+        } else {
+            $userDetail['kieu_mg'] = 2;
+        }
+        if (!empty($userDetail['long_mg']) == 'Lồng đứng') {
+            $userDetail['long_mg'] = 1;
+        } else {
+            $userDetail['long_mg'] = 2;
+        }
         setFlashData('userDetail', $userDetail);
     }
 } else {
@@ -42,9 +52,10 @@ if (isPost()) {
     }
 
     // kiểm tra giá
-    if (empty($filterAll['giagoc_sp'])) {
-        $errors['giagoc_sp']['required'] = 'Giá máy giặt bắt buộc phải nhập';
+    if (empty($filterAll['giahientai_sp'])) {
+        $errors['giahientai_sp']['required'] = 'Giá máy giặt bắt buộc phải nhập';
     }
+
 
     // kiểm tra khối lượng
     if (empty($filterAll['khoiluong_mg'])) {
@@ -118,50 +129,57 @@ if (isPost()) {
         }
     }
 
-
     if (isset($_FILES['hinhanh'])) {
         $upload_dir = _WEB_PATH_TEMPLATES . "/images/maygiat/";
-        if (!$_FILES['hinhanh']['error'] > 0) {
+
+        if (!$_FILES['hinhanh']['error'] > 0 && empty($errors)) {
             $anhDaiDien = $_FILES['hinhanh']['name'];
             $tentaptin_anh = date('YdmHis') . '_' . $anhDaiDien;
             move_uploaded_file($_FILES['hinhanh']['tmp_name'], $upload_dir . $tentaptin_anh);
+            $old_file_sp_hinh =  $upload_dir . $userDetail['hinhanh'];
+            if (file_exists($old_file_sp_hinh)) {
+                unlink($old_file_sp_hinh);
+            }
         } else {
-            $tentaptin_anh = "default-account.jpg";
+            $tentaptin_anh =  $userDetail['hinhanh'];
         }
     }
+
 
     if (empty($errors)) {
         $ten_sp =  $filterAll['ten_sp'];
         $datetime = date('Y-m-d H:i:s');
 
-
-        $dataInsertSP = [
+        $dataUpdateSP = [
             'ten_sp' =>  $ten_sp,
             'id_lsp' => 1,
             'hinhanh' => $tentaptin_anh,
+            'giahientai_sp' => $filterAll['giahientai_sp'],
             'id_th' => $filterAll['id_th'],
             'so_luong' => $filterAll['so_luong'],
             'create_at' => $datetime,
         ];
-        if (!empty($filterAll['giagoc_sp'])) {
-            $dataInsertSP['giahientai_sp'] = $filterAll['giagoc_sp'];
-        }
 
-        if (!empty($filterAll['giahientai_sp'])) {
-            $dataInsertSP['giahientai_sp'] = $filterAll['giahientai_sp'];
-            $dataInsertSP['giagoc_sp'] = $filterAll['giagoc_sp'];
+        if (!empty($filterAll['giagoc_sp'])) {
+            $dataUpdateSP['giagoc_sp'] = $filterAll['giagoc_sp'];
+        } else {
+            $dataUpdateSP['giagoc_sp'] = $filterAll['giagoc_sp'];
         }
 
         if (!empty($filterAll['id_tthai'])) {
-            $dataInsertSP['id_tthai'] = $filterAll['id_tthai'];
+            $dataUpdateSP['id_tthai'] = $filterAll['id_tthai'];
+        } else {
+            $dataUpdateSP['id_tthai'] = null;
         }
 
         if (!empty($filterAll['id_km'])) {
-            $dataInsertSP['id_km'] = $filterAll['id_km'];
+            $dataUpdateSP['id_km'] = $filterAll['id_km'];
+        } else {
+            $dataUpdateSP['id_km'] = null;
         }
-
-        $inserStatusSP = insert('sanpham', $dataInsertSP);
-        if ($inserStatusSP) {
+        $condition = "id_sp = $sanPhamId";
+        $UpdateStatusSP = update('sanpham', $dataUpdateSP, $condition);
+        if ($UpdateStatusSP) {
             $querySP = oneRaw("SELECT * FROM sanpham WHERE ten_sp = '$ten_sp' AND create_at='$datetime'");
             $id_sp = $querySP['id_sp'];
             if (!empty($filterAll['kieu_mg'] == 2)) {
@@ -176,7 +194,7 @@ if (isPost()) {
                 $filterAll['long_mg'] = 'Lồng ngang';
             }
 
-            $dataInsertMayGiat = [
+            $dataUpdateMayGiat = [
                 'id_sp' => $id_sp,
                 'ten_mg' => $ten_sp,
                 'kieu_mg' => $filterAll['kieu_mg'],
@@ -191,14 +209,13 @@ if (isPost()) {
                 'baohanh' => $filterAll['so_luong'],
                 'create_at' => date('Y-m-d H:i:s')
             ];
-            $inserStatusMaygiat = insert('maygiat', $dataInsertMayGiat);
-            if (!empty($inserStatusMaygiat)) {
-                setFlashData('msg', 'Thêm mới máy giặt thành công!');
+            $UpdateStatusMaygiat = update('maygiat', $dataUpdateMayGiat, $condition);
+            if (!empty($UpdateStatusMaygiat)) {
+                setFlashData('msg', 'Sửa máy giặt thành công!');
                 setFlashData('msgType', 'success');
-                redirect(_WEB_HOST . '/maygiat/list.php');
             }
         } else {
-            setFlashData('msg', 'Thêm mới máy giặt không thành công!');
+            setFlashData('msg', 'Sửa máy giặt không thành công!');
             setFlashData('msgType', 'danger');
         }
     } else {
@@ -207,6 +224,7 @@ if (isPost()) {
         setFlashData('errors', $errors);
         setFlashData('old', $filterAll);
     }
+    redirect(_WEB_HOST . '/maygiat/edit.php?id=' . $sanPhamId);
 }
 
 $msg = getFlashData('msg');
@@ -230,7 +248,7 @@ if (!empty($userDetail)) {
         <div class="col-1"></div>
         <div class="col-7 content">
             <div class="col">
-                <h2 class="text-center title-login">THÊM SẢN PHẨM MỚI GIẶT</h2>
+                <h2 class="text-center title-login">SỬA THÔNG TIN MÁY GIẶT</h2>
                 <?php
                 !empty($msg) ? getMsg($msg, $msgType) : '';
                 ?>
@@ -245,7 +263,7 @@ if (!empty($userDetail)) {
 
                             <div class="form-group">
                                 <label for="anhDaiDien">Ảnh sản phẩm</label><br />
-                                <img src="<?php echo _WEB_HOST_TEMPLATES ?>/images/maygiat/default.jpg" id="anhDemo" name="anhDemo" width="200px" height="200px">
+                                <img src="<?php echo _WEB_HOST_TEMPLATES ?>/images/maygiat/<?php echo $userDetail['hinhanh'] ?>" id="anhDemo" name="anhDemo" width="200px" height="200px">
                             </div>
                             <div class="form-group">
                                 <input type="file" class="form-control" id="hinhanh" name="hinhanh" placeholder="Ảnh sản phẩm" onchange="showHinh()" value="<?php echo old('hinhanh', $old); ?>">
@@ -287,17 +305,16 @@ if (!empty($userDetail)) {
                             </div>
 
                             <div class="form-group">
-                                <label id="currencyInput" for="">Giá gốc <mn style="color:red">*</mn></label>
-                                <input type="number" class="mg-form form-control" name="giagoc_sp" placeholder="Nhập số tiền giá gốc" value="<?php echo old('giagoc_sp', $old); ?>">
-                                <?php echo formError('giagoc_sp', ' <span class="error">', '</span>', $errors) ?>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="">Giá sau giảm</label>
-                                <input type="number" class="mg-form form-control" name="giahientai_sp" placeholder="Nhập số tiền giá  sau khi giảm" value="<?php echo old('giahientai_sp', $old); ?>">
+                                <label for="">Giá gốc <mn style="color:red">*</mn></label>
+                                <input type="number" class="mg-form form-control" name="giahientai_sp" placeholder="Nhập số tiền giá gốc" value="<?php echo old('giahientai_sp', $old); ?>">
                                 <?php echo formError('giahientai_sp', ' <span class="error">', '</span>', $errors) ?>
                             </div>
 
+                            <div class="form-group">
+                                <label id="currencyInput" for="">Giá sau giảm</label>
+                                <input type="number" class="mg-form form-control" name="giagoc_sp" placeholder="Nhập số tiền giá sau giảm" value="<?php echo old('giagoc_sp', $old); ?>">
+                                <?php echo formError('giagoc_sp', ' <span class="error">', '</span>', $errors) ?>
+                            </div>
 
                             <div class="form-group">
                                 <label for="">Khối lượng giặt (Kg) <mn style="color:red">*</mn></label>
@@ -384,10 +401,13 @@ if (!empty($userDetail)) {
                                 </select>
                                 <?php echo formError('id_tthai', ' <span class="error">', '</span>', $errors) ?>
                             </div>
-                            <input type="hidden" name="id" value="<?php echo $userId; ?>">
+                            <input type="hidden" name="id" value="<?php echo $sanPhamId; ?>">
                         </div>
-                        <button type="submit" class="btn-login btn btn-primary btn-block" style="margin:15px 5px; width:45%">Thêm mới</button>
-                        <button type="submit" class="btn-login btn btn-secondary btn-block" style="margin:15px 5px; width:45%"><a href="list.php" style="text-decoration: none; color:white">Quay về</a></button>
+
+                        <div class="form-group mt-3 mb-3">
+                            <button type="submit" class="btn-login btn btn-primary btn-block" style="width:30%;">Sửa thông tin</button>
+                            <a href="<?php echo _WEB_HOST . '/maygiat/list.php' ?>" class="btn btn-success btn-block" style="width:30%;">Quay lại</a>
+                        </div>
                     </div>
                 </form>
             </div>

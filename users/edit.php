@@ -96,6 +96,10 @@ if (isPost()) {
             $anhDaiDien = $_FILES['hinhanh_user']['name'];
             $tentaptin_anh = date('YdmHis') . '_' . $anhDaiDien;
             move_uploaded_file($_FILES['hinhanh_user']['tmp_name'], $upload_dir . $tentaptin_anh);
+            $old_file_sp_hinh =  $upload_dir .$userDetail['hinhanh_user'];
+            if (file_exists($old_file_sp_hinh)) {
+                unlink($old_file_sp_hinh);
+            }
         } else {
             $tentaptin_anh =  $userDetail['hinhanh_user'];
         }
@@ -224,9 +228,7 @@ if (!empty($userDetail)) {
                                 <label for="">Nhập lại mật Khẩu</label>
                                 <input type="password" class="mg-form form-control" name="password_confirm" placeholder="Nhập lại mật khẩu (nếu có thay đổi)"> <?php echo formError('password_confirm', ' <span class="error">', '</span>', $errors) ?>
                             </div>
-
                             <input type="hidden" name="id" value="<?php echo $userId; ?>">
-
                         </div>
                     </div>
 

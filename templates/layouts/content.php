@@ -160,7 +160,7 @@
                     if (!empty($queryMayNuocNong)) :
                         foreach ($queryMayNuocNong as $item):
                     ?>
-                            <a href="tulanh/view.php?sp=<?php echo $item['ten_sp'] ?>" class="col-3 main-item card" title="<?php echo $item['ten_sp']; ?>">
+                            <a href="maynuocnong/view.php?sp=<?php echo $item['ten_sp'] ?>" class="col-3 main-item card" title="<?php echo $item['ten_sp']; ?>">
                             <?php echo fileImage($item['id_lsp'], _WEB_HOST_TEMPLATES, $item['hinhanh']) ?>
                                 <div class="card-body">
                                     <p class="card-title ten-item"><?php echo limitString($item['ten_sp']); ?></p>

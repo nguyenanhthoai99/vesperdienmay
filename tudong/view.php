@@ -23,128 +23,129 @@ $giaLon = $query['giahientai_sp'] + 5000000;
         </div>
         <div class="col-7">
             <form action="<?php _WEB_HOST; ?>/vesperdienmay/cart/dathang.php" method="post">
-                <h3 class="tieudieu-spct text-center">Thông tin chi tiết</h3>
-                <tbody>
-                    <div class="row">
-                        <tr>
-                            <div class="col-3">
+                <table class="table table-borderless">
+                    <h3 class="tieudieu-spct text-center">Thông tin chi tiết</h3>
+                    <tbody>
+                        <div class="row">
+                            <tr>
+                                <div class="col-3">
+                                    <td>
+                                        Loại tủ:
+                                    </td>
+                                </div>
+                                <div class="col-9">
+                                    <td><?php echo $query['kieu_td'] ?></td>
+                                </div>
+                            </tr>
+                            <tr>
+                                <div class="col-3">
+                                    <td>
+                                        Dung tích tổng:
+                                    </td>
+                                </div>
+                                <div class="col-9">
+                                    <td><?php echo $query['dungtich_td'] ?> Lít</td>
+                                </div>
+                            </tr>
+                            <tr>
+                                <div class="col-3">
+                                    <td>
+                                        Số cửa:
+                                    </td>
+                                </div>
+                                <div class="col-9">
+                                    <td><?php echo $query['socua_td'] ?> Lít</td>
+                                </div>
+                            </tr>
+                            <tr>
+                                <div class="col-3">
+                                    <td>
+                                        Điện năng tiêu thụ:
+                                    </td>
+                                </div>
+                                <div class="col-9">
+                                    <td><?php echo $query['congsuat_td'] ?> Lít</td>
+                                </div>
+                            </tr>
+                            <tr>
+                                <div class="col-3">
+                                    <td>
+                                        Công nghệ tích hợp:
+                                    </td>
+                                </div>
+                                <div class="col-9">
+                                    <td><?php echo $query['congnghe_td'] ?></td>
+                                </div>
+                            </tr>
+                            <tr>
+                                <div class="col-3">
+                                    <td>
+                                        Chất liệu dàn lạnh:
+                                    </td>
+                                </div>
+                                <div class="col-9">
+                                    <td><?php echo $query['chatlieudanlanh_td'] ?></td>
+                                </div>
+                            </tr>
+                            <tr>
+                                <div class="col-3">
+                                    <td>
+                                        Chất liệu lòng tủ:
+                                    </td>
+                                </div>
+                                <div class="col-9">
+                                    <td><?php echo $query['chatlieulongtu_td'] ?></td>
+                                </div>
+                            </tr>
+                            <tr>
+                                <div class="col-3">
+                                    <td>
+                                        Chất liệu bên ngoài:
+                                    </td>
+                                </div>
+                                <div class="col-9">
+                                    <td><?php echo $query['chatlieubenngoai_td'] ?></td>
+                                </div>
+                            </tr>
+                            <tr>
+                                <div class="col-3">
+                                    <td>
+                                        Độ ồn:
+                                    </td>
+                                </div>
+                                <div class="col-9">
+                                    <td><?php echo $query['doon_td'] ?> dB</td>
+                                </div>
+                            </tr>
+                            <tr>
+                                <div class="col-3">
+                                    <td>
+                                        Sản xuất:
+                                    </td>
+                                </div>
+                                <div class="col-9">
+                                    <td><?php echo $query['ten_nsx'] ?></td>
+                                </div>
+                            </tr>
+                            <tr>
+                                <div class="col-3">
+                                    <td>
+                                        Năm:
+                                    </td>
+                                </div>
+                                <div class="col-9">
+                                    <td><?php echo $query['nam'] ?></td>
+                                </div>
+                            </tr>
+                            <tr>
                                 <td>
-                                    Loại tủ:
+                                    <p class="card-text gia-item"><?php echo showCurrency($query['giahientai_sp']); ?></p>
+                                    <?php echo !empty($query['giagoc_sp']) ? '<p class="card-text giacu-item">' . showCurrency($query['giagoc_sp']) . '</p>' : null ?>
+                                    <span class="phantram-goiy"><?php echo !empty(percentage($query['giagoc_sp'], $query['giahientai_sp'])) ? percentage($query['giagoc_sp'], $query['giahientai_sp']) : null; ?></span>
                                 </td>
-                            </div>
-                            <div class="col-9">
-                                <td><?php echo $query['kieu_td'] ?></td>
-                            </div>
-                        </tr>
-                        <tr>
-                            <div class="col-3">
-                                <td>
-                                    Dung tích tổng:
-                                </td>
-                            </div>
-                            <div class="col-9">
-                                <td><?php echo $query['dungtich_td'] ?> Lít</td>
-                            </div>
-                        </tr>
-                        <tr>
-                            <div class="col-3">
-                                <td>
-                                    Số cửa:
-                                </td>
-                            </div>
-                            <div class="col-9">
-                                <td><?php echo $query['socua_td'] ?> Lít</td>
-                            </div>
-                        </tr>
-                        <tr>
-                            <div class="col-3">
-                                <td>
-                                    Điện năng tiêu thụ:
-                                </td>
-                            </div>
-                            <div class="col-9">
-                                <td><?php echo $query['congsuat_td'] ?> Lít</td>
-                            </div>
-                        </tr>
-                        <tr>
-                            <div class="col-3">
-                                <td>
-                                    Công nghệ tích hợp:
-                                </td>
-                            </div>
-                            <div class="col-9">
-                                <td><?php echo $query['congnghe_td'] ?></td>
-                            </div>
-                        </tr>
-                        <tr>
-                            <div class="col-3">
-                                <td>
-                                    Chất liệu dàn lạnh:
-                                </td>
-                            </div>
-                            <div class="col-9">
-                                <td><?php echo $query['chatlieudanlanh_td'] ?></td>
-                            </div>
-                        </tr>
-                        <tr>
-                            <div class="col-3">
-                                <td>
-                                    Chất liệu lòng tủ:
-                                </td>
-                            </div>
-                            <div class="col-9">
-                                <td><?php echo $query['chatlieulongtu_td'] ?></td>
-                            </div>
-                        </tr>
-                        <tr>
-                            <div class="col-3">
-                                <td>
-                                    Chất liệu bên ngoài:
-                                </td>
-                            </div>
-                            <div class="col-9">
-                                <td><?php echo $query['chatlieubenngoai_td'] ?></td>
-                            </div>
-                        </tr>
-                        <tr>
-                            <div class="col-3">
-                                <td>
-                                    Độ ồn:
-                                </td>
-                            </div>
-                            <div class="col-9">
-                                <td><?php echo $query['doon_td'] ?> dB</td>
-                            </div>
-                        </tr>
-                        <tr>
-                            <div class="col-3">
-                                <td>
-                                    Sản xuất:
-                                </td>
-                            </div>
-                            <div class="col-9">
-                                <td><?php echo $query['ten_nsx'] ?></td>
-                            </div>
-                        </tr>
-                        <tr>
-                            <div class="col-3">
-                                <td>
-                                    Năm:
-                                </td>
-                            </div>
-                            <div class="col-9">
-                                <td><?php echo $query['nam'] ?></td>
-                            </div>
-                        </tr>
-                        <tr>
-                            <td>
-                                <p class="card-text gia-item"><?php echo showCurrency($query['giahientai_sp']); ?></p>
-                                <?php echo !empty($query['giagoc_sp']) ? '<p class="card-text giacu-item">' . showCurrency($query['giagoc_sp']) . '</p>' : null ?>
-                                <span class="phantram-goiy"><?php echo !empty(percentage($query['giagoc_sp'], $query['giahientai_sp'])) ? percentage($query['giagoc_sp'], $query['giahientai_sp']) : null; ?></span>
-                            </td>
-                        </tr>
-                    </div>
-                </tbody>
+                            </tr>
+                        </div>
+                    </tbody>
                 </table>
                 <div class="row">
                     <label for="soluong">Số lượng đặt mua:</label>

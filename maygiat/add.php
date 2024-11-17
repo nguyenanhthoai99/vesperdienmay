@@ -213,7 +213,7 @@ $old = getFlashData('old');
         <div class="col-1"></div>
         <div class="col-7 content">
             <div class="col">
-                <h2 class="text-center title-login">THÊM SẢN PHẨM MỚI GIẶT</h2>
+                <h2 class="text-center title-login">THÊM SẢN PHẨM MỚI MÁY GIẶT</h2>
                 <?php
                 !empty($msg) ? getMsg($msg, $msgType) : '';
                 ?>
@@ -369,7 +369,7 @@ $old = getFlashData('old');
                             </div>
                         </div>
                         <button type="submit" class="btn-login btn btn-primary btn-block" style="margin:15px 5px; width:45%">Thêm mới</button>
-                        <button type="submit" class="btn-login btn btn-secondary btn-block" style="margin:15px 5px; width:45%"><a href="list.php" style="text-decoration: none; color:white">Quay về</a></button>
+                        <a href="<?php echo _WEB_HOST . '/maygiat/list.php' ?>" class="btn btn-success btn-block" style="width:30%;">Quay lại</a>
                     </div>
                 </form>
             </div>
