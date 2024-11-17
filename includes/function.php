@@ -165,7 +165,7 @@ function isPhone($phone)
 // Hàm thông báo lỗi
 function getMsg($msg, $type = 'success')
 {
-    echo '<div class="alert alert-' . $type . '">';
+    echo '<div class="text-center alert alert-' . $type . '">';
     print_r($msg);
     echo '</div>';
 }

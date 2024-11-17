@@ -115,7 +115,7 @@ if (isPost()) {
             $tentaptin_anh = date('YdmHis') . '_' . $anhDaiDien;
             move_uploaded_file($_FILES['hinhanh']['tmp_name'], $upload_dir . $tentaptin_anh);
         } else {
-            $tentaptin_anh = "default-account.jpg";
+            $tentaptin_anh = "default.jpg";
         }
     }
 
@@ -368,9 +368,9 @@ $old = getFlashData('old');
                                 <?php echo formError('id_tthai', ' <span class="error">', '</span>', $errors) ?>
                             </div>
                         </div>
-                        <button type="submit" class="btn-login btn btn-primary btn-block" style="margin:15px 5px; width:45%">Thêm mới</button>
-                        <a href="<?php echo _WEB_HOST . '/maygiat/list.php' ?>" class="btn btn-success btn-block" style="width:30%;">Quay lại</a>
                     </div>
+                    <button type="submit" class="btn-login btn btn-primary btn-block" style="margin:15px 5px; width:45%">Thêm mới</button>
+                    <a href="<?php echo _WEB_HOST . '/maygiat/list.php' ?>" class="btn btn-success btn-block" style="width:30%;">Quay lại</a>
                 </form>
             </div>
         </div>

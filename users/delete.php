@@ -18,7 +18,6 @@ if (!empty($filterAll['id'])) {
     } else {
         $old_file_sp_hinh = null;
     }
-
     if (!empty($userDetail)) {
         // Thực hiện xóa id ở bảng tokenLogin trước
         $deleteLogin = delete('tokenLogin', "id_user = $userId");

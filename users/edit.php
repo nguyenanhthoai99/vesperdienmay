@@ -96,7 +96,7 @@ if (isPost()) {
             $anhDaiDien = $_FILES['hinhanh_user']['name'];
             $tentaptin_anh = date('YdmHis') . '_' . $anhDaiDien;
             move_uploaded_file($_FILES['hinhanh_user']['tmp_name'], $upload_dir . $tentaptin_anh);
-            $old_file_sp_hinh =  $upload_dir .$userDetail['hinhanh_user'];
+            $old_file_sp_hinh =  $upload_dir . $userDetail['hinhanh_user'];
             if (file_exists($old_file_sp_hinh)) {
                 unlink($old_file_sp_hinh);
             }

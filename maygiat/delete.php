@@ -11,12 +11,21 @@ adminLogin();
 $filterAll = filter();
 if (!empty($filterAll['id'])) {
     $IdSP = $filterAll['id'];
-    $userDetail = getRows("SELECT * FROM sanphan WHERE ip_sp = '$IdSP'");
-    if ($userDetail > 0) {
+    $userDetail = oneRaw("SELECT * FROM sanpham WHERE id_sp = '$IdSP'");
+    $upload_dir = _WEB_PATH_TEMPLATES . "/images/maygiat/";
+    if ($userDetail['hinhanh'] != 'default.jpg') {
+        $old_file_sp_hinh =  $upload_dir . $userDetail['hinhanh'];
+    } else {
+        $old_file_sp_hinh = null;
+    }
+    if (!empty($userDetail)) {
         // Thực hiện xóa id ở bảng may giặt trước
-        $deleteMayGiat = delete('maygiat', "ip_sp = $ip_sp");
+        $deleteMayGiat = delete('maygiat', "id_sp = $IdSP");
         if($deleteMayGiat){
-            $deleteSP = delete('users', "ip_sp = $ip_sp");
+        if (!empty(file_exists($old_file_sp_hinh))) {
+            unlink($old_file_sp_hinh);
+        }
+            $deleteSP = delete('sanpham', "id_sp = $IdSP");
             if($deleteSP){
                 setFlashData('msg', 'Xóa sản phẩm hàng thành công!');
                 setFlashData('msgType', 'success');
@@ -30,4 +39,4 @@ if (!empty($filterAll['id'])) {
     setFlashData('msg', 'Liên kết không tồn tại!');
     setFlashData('msgType', 'danger');
 }
-redirect(_WEB_HOST . '/users/list.php');
+// redirect(_WEB_HOST . '/maygiat/list.php');

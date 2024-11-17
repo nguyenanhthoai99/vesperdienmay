@@ -66,24 +66,25 @@ $errors = getFlashData('errors');
                                     </button>
                                 </td>
                             </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" width="200px">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">Bạn có chắc xóa không?</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger">
-                                        <a href="delete.php?id=<?php echo $item['id_user'] ?>" style="color:white;text-decoration: none;">Có</a></button>
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Không</button>
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" width="200px">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">Bạn có chắc xóa không?</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger">
+                                                <a href="delete.php?id=<?php echo $item['id_user'] ?>" style="color:white;text-decoration: none;">Có</a></button>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Không</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
+                        <?php endforeach; ?>
+                    </tbody>
+
                 </table>
                 <div class="text-center">
                     <?php echo page($page, $tongPage) ?>

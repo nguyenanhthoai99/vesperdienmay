@@ -41,7 +41,7 @@
                 <h2 class="tilte-content text-uppercase">Máy giặt</h2>
                 <div class="row">
                     <?php
-                    $queryMaygiat = getRaw("SELECT * FROM sanpham WHERE id_lsp = 1 ORDER BY update_at DESC, create_at DESC  limit 8");
+                    $queryMaygiat = getRaw("SELECT * FROM sanpham WHERE id_lsp = 1 AND id_tthai = 1 ORDER BY update_at DESC, create_at DESC  limit 8");
                     if (!empty($queryMaygiat)) :
                         foreach ($queryMaygiat as $item):
                     ?>
@@ -64,7 +64,7 @@
                 <h2 class="tilte-content text-uppercase">Máy lọc nước</h2>
                 <div class="row">
                     <?php
-                    $queryMayLocNuoc = getRaw("SELECT * FROM sanpham WHERE id_lsp = 2 ORDER BY update_at DESC, create_at DESC  limit 8");
+                    $queryMayLocNuoc = getRaw("SELECT * FROM sanpham WHERE id_lsp = 2 AND id_tthai = 1 ORDER BY update_at DESC, create_at DESC  limit 8");
                     if (!empty($queryMayLocNuoc)) :
                         foreach ($queryMayLocNuoc as $item):
                     ?>
@@ -87,7 +87,7 @@
                 <h2 class="tilte-content text-uppercase">Tủ lạnh</h2>
                 <div class="row">
                     <?php
-                    $queryTuLanh = getRaw("SELECT * FROM sanpham WHERE id_lsp = 6 ORDER BY update_at DESC, create_at DESC  limit 8");
+                    $queryTuLanh = getRaw("SELECT * FROM sanpham WHERE id_lsp = 6 AND id_tthai = 1 ORDER BY update_at DESC, create_at DESC  limit 8");
                     if (!empty($queryTuLanh)) :
                         foreach ($queryTuLanh as $item):
                     ?>
@@ -110,7 +110,7 @@
                 <h2 class="tilte-content text-uppercase">Máy lạnh</h2>
                 <div class="row">
                     <?php
-                    $queryMayLanh = getRaw("SELECT * FROM sanpham WHERE id_lsp = 7 ORDER BY update_at DESC, create_at DESC  limit 8");
+                    $queryMayLanh = getRaw("SELECT * FROM sanpham WHERE id_lsp = 7 AND id_tthai = 1 ORDER BY update_at DESC, create_at DESC  limit 8");
                     if (!empty($queryMayLanh)) :
                         foreach ($queryMayLanh as $item):
                     ?>
@@ -133,7 +133,7 @@
                 <h2 class="tilte-content text-uppercase">Tủ đông</h2>
                 <div class="row">
                     <?php
-                    $queryTuDong = getRaw("SELECT * FROM sanpham WHERE id_lsp = 3 ORDER BY update_at DESC, create_at DESC  limit 8");
+                    $queryTuDong = getRaw("SELECT * FROM sanpham WHERE id_lsp = 3 AND id_tthai = 1 ORDER BY update_at DESC, create_at DESC  limit 8");
                     if (!empty($queryTuDong)) :
                         foreach ($queryTuDong as $item):
                     ?>
@@ -156,7 +156,7 @@
                 <h2 class="tilte-content text-uppercase">Máy nước nóng</h2>
                 <div class="row">
                     <?php
-                    $queryMayNuocNong = getRaw("SELECT * FROM sanpham WHERE id_lsp = 4 ORDER BY update_at DESC, create_at DESC  limit 8");
+                    $queryMayNuocNong = getRaw("SELECT * FROM sanpham WHERE id_lsp = 4 AND id_tthai = 1 ORDER BY update_at DESC, create_at DESC  limit 8");
                     if (!empty($queryMayNuocNong)) :
                         foreach ($queryMayNuocNong as $item):
                     ?>
@@ -179,7 +179,7 @@
                 <h2 class="tilte-content text-uppercase">Ti vi</h2>
                 <div class="row">
                     <?php
-                    $queryTivi = getRaw("SELECT * FROM sanpham WHERE id_lsp = 5 ORDER BY update_at DESC, create_at DESC  limit 8");
+                    $queryTivi = getRaw("SELECT * FROM sanpham WHERE id_lsp = 5 AND id_tthai = 1 ORDER BY update_at DESC, create_at DESC  limit 8");
                     if (!empty($queryTivi)) :
                         foreach ($queryTivi as $item):
                     ?>

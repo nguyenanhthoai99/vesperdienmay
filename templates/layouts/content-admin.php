@@ -27,7 +27,7 @@ $query = getRaw("SELECT dh.so_luong, dh.trang_thai, dh.ngay_tt,  lsp.ten_lsp, CO
                             <li><a class="dropdown-item" href="<?php echo _WEB_HOST;?>/maygiat/list.php">Máy giặt</a></li>
                             <li><a class="dropdown-item" href="<?php echo _WEB_HOST;?>/maylocnuoc/list.php">Máy lọc nước</a></li>
                             <li><a class="dropdown-item" href="<?php echo _WEB_HOST;?>/tulanh/list.php">Tủ lạnh</a></li>
-                            <li><a class="dropdown-item" href="<?php echo _WEB_HOST;?>/maygiat/list.php">Máy lạnh</a></li>
+                            <li><a class="dropdown-item" href="<?php echo _WEB_HOST;?>/maylanh/list.php">Máy lạnh</a></li>
                             <li><a class="dropdown-item" href="<?php echo _WEB_HOST;?>/tudong/list.php">Tủ đông</a></li>
                             <li><a class="dropdown-item" href="<?php echo _WEB_HOST;?>/maynuocnong/list.php">Máy nước nóng</a></li>
                             <li><a class="dropdown-item" href="<?php echo _WEB_HOST;?>/tivi/list.php">Tivi</a></li>

@@ -14,9 +14,8 @@ $itemPage = 10;
 $offset = ($page - 1) * $itemPage;
 $queryMatGiat = getRaw("SELECT * FROM sanpham as sp INNER JOIN thuonghieu as th ON th.id_th = sp.id_th WHERE id_lsp = 1 ORDER BY update_at DESC, create_at DESC LIMIT " . $itemPage . " OFFSET " . $offset);
 $tongMayGiat = getRows("SELECT * FROM sanpham WHERE id_lsp = 1");
-$tongPage = ceil( $tongMayGiat / $itemPage);
+$tongPage = ceil($tongMayGiat / $itemPage);
 $stt = $offset + 1;
-
 $msg = getFlashData('msg');
 $msgType = getFlashData('msgType');
 $errors = getFlashData('errors');
@@ -31,7 +30,7 @@ $errors = getFlashData('errors');
             <!-- Nội dung chính của trang -->
 
             <div class="col-9 content">
-                <h2 class="text-center title-login">QUẢN LÝ SẨN PHẨM MÁY GIẶT</h2>
+                <h2 class="text-center title-login">QUẢN LÝ SẢN PHẨM MÁY GIẶT</h2>
                 <?php
                 !empty($msg) ? getMsg($msg, $msgType) : '';
                 ?>
@@ -63,29 +62,31 @@ $errors = getFlashData('errors');
                                 <td><button type="button" class="btn btn-warning"><a href="edit.php?id=<?php echo $item['id_sp'] ?>"><i class="fa-regular fa-pen-to-square" style="color: black;"></i></a></button></td>
                                 <!-- Button trigger modal -->
                                 <td>
-                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal_<?php echo $item['id_sp']; ?>">
                                         <i class="fa-solid fa-trash-can" style="color: black;"></i>
                                     </button>
                                 </td>
                             </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" width="200px">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">Bạn có chắc xóa không?</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger">
-                                        <a href="delete.php?id=<?php echo $item['id_sp'] ?>" style="color:white;text-decoration: none;">Có</a></button>
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Không</button>
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal_<?php echo $item['id_sp']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" width="200px">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">Bạn có chắc xóa không?</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger">
+                                                <a href="delete.php?id=<?php echo $item['id_sp'] ?>" style="color:white;text-decoration: none;">Có</a></button>
+
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Không</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
+                        <?php endforeach; ?>
+                    </tbody>
+
                 </table>
                 <div class="text-center">
                     <?php echo page($page, $tongPage) ?>
