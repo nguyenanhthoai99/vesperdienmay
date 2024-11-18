@@ -39,4 +39,4 @@ if (!empty($filterAll['id'])) {
     setFlashData('msg', 'Liên kết không tồn tại!');
     setFlashData('msgType', 'danger');
 }
-// redirect(_WEB_HOST . '/maygiat/list.php');
+redirect(_WEB_HOST . '/maygiat/list.php');

@@ -56,7 +56,6 @@ if (isPost()) {
         $errors['giahientai_sp']['required'] = 'Giá máy giặt bắt buộc phải nhập';
     }
 
-
     // kiểm tra khối lượng
     if (empty($filterAll['khoiluong_mg'])) {
         $errors['khoiluong_mg']['required'] = 'Khối lượng máy giặt bắt buộc phải nhập';
@@ -258,7 +257,7 @@ if (!empty($userDetail)) {
                             <div class="form-group">
                                 <label for="">Tên sản phẩm <mn style="color:red">*</mn></label>
                                 <input type="text" class="mg-form form-control" name="ten_sp" placeholder="Tên sản phẩm" value="<?php echo old('ten_sp', $old); ?>">
-                                <?php echo formError('hoten_user', ' <span class="error">', '</span>', $errors) ?>
+                                <?php echo formError('ten_sp', ' <span class="error">', '</span>', $errors) ?>
                             </div>
 
                             <div class="form-group">

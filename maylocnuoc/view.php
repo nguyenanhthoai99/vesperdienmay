@@ -30,12 +30,21 @@ $giaLon = $query['giahientai_sp'] + 5000000;
                             <tr>
                                 <div class="col-3">
                                     <td>
-                                        Kiểu lắp tủ:
+                                        Tên sản phẩm:
                                     </td>
                                 </div>
                                 <div class="col-9">
-                                    <td><?php echo $query['kieu_mln'];
-                                        echo $kq; ?></td>
+                                    <td><?php echo $query['ten_sp']; ?></td>
+                                </div>
+                            </tr>
+                            <tr>
+                                <div class="col-3">
+                                    <td>
+                                        Kiểu tủ:
+                                    </td>
+                                </div>
+                                <div class="col-9">
+                                    <td><?php echo $query['kieu_mln'];?></td>
                                 </div>
                             </tr>
                             <tr>
@@ -51,7 +60,7 @@ $giaLon = $query['giahientai_sp'] + 5000000;
                             <tr>
                                 <div class="col-3">
                                     <td>
-                                        Diện tích bình chứa:
+                                        Dung tích bình chứa:
                                     </td>
                                 </div>
                                 <div class="col-9">
@@ -75,13 +84,13 @@ $giaLon = $query['giahientai_sp'] + 5000000;
                                     </td>
                                 </div>
                                 <div class="col-9">
-                                    <td><?php echo $query['congsuatdien_mln'] ?></td>
+                                    <td><?php echo $query['congsuatdien_mln'] ?> kW/h</td>
                                 </div>
                             </tr>
                             <tr>
                                 <div class="col-3">
                                     <td>
-                                        Máy lực nước yêu cầu:
+                                        Áp lực nước yêu cầu:
                                     </td>
                                 </div>
                                 <div class="col-9">
